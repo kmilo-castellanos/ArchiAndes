@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { Stuff } from '../../api/stuff/stuff.js';
+import { Stuff } from '../../api/qs/collections.js';
 
 /**
  * A list of Stuff to pre-fill the Collection.

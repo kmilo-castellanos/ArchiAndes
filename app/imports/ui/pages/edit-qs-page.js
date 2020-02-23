@@ -1,7 +1,7 @@
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
-import { Stuff } from '../../api/stuff/stuff.js';
+import { Stuff, QScenarios } from '../../api/stuff/stuff.js';
 
 /* eslint-disable object-shorthand, no-unused-vars */
 
@@ -24,10 +24,10 @@ AutoForm.hooks({
 
 Template.Edit_QS_Page.helpers({
   getDoc() {
-    return Stuff.findOne(FlowRouter.getParam('_id'));
+    return QScenarios.findOne(FlowRouter.getParam('_id'));
   },
-  stuffCollection() {
-    return Stuff;
+  qsCollection() {
+    return QScenarios;
   },
 });
 

@@ -6,17 +6,19 @@
           <thead>
           <tr>
             <th>Name</th>
-            <th>Quantity</th>
+            <th>Source</th>
+            <th>Stimulus</th>
             <th>Edit</th>
           </tr>
           </thead>
 
           <tbody>
-          {{#each stuff in stuffList}}
+          {{#each qs in qsList}}
             <tr>
-              <td>{{stuff.name}}</td>
-              <td>{{stuff.quantity}}</td>
-              <td><a href="{{pathFor 'Edit_QS_Page' _id=stuff._id}}">Edit</a></td>
+              <td>{{qs.name}}</td>
+              <td>{{qs.source}}</td>
+              <td>{{qs.stimulus}}</td>
+              <td><a href="{{pathFor 'Edit_QS_Page' _id=qs._id}}">Edit</a></td>
             </tr>
           {{/each}}
           </tbody>
