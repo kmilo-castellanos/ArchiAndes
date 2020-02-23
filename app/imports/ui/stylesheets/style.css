@@ -1,0 +1,29 @@
+body {
+  padding-top: 61px;  /* Move body of page below navbar. */
+}
+
+/*
+.ui.positive.buttons .button,
+.ui.positive.button {
+  background-color:#fff200;
+  color: #000000;
+}
+
+
+.ui.inverted.menu {
+  background: #fff200;
+}
+
+.ui.inverted.menu .item{
+  color: #484851;
+}
+
+.ui.inverted.menu .active.item{
+  color: #000000!important;
+  font-weight: bold!important;
+}
+
+.ui.inverted.menu .item.button{
+  color: #000000!important;
+  font-weight: bold!important;
+}*/
