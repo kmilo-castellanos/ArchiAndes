@@ -5,8 +5,12 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Stuff = new Mongo.Collection('Stuff');
 
+export const QAttributes = new Mongo.Collection('QAttributes');
 
 export const QScenarios= new Mongo.Collection('QScenarios');
+
+export const QAMetrics= new Mongo.Collection('QAMetrics');
+
 
 
 /**
@@ -93,6 +97,34 @@ export const QSSchema = new SimpleSchema({
       group: 'QS',
       placeholder: 'Response',
     },
+  },
+  qa: {
+    label: 'Quality Attribute',
+    type: String,
+    optional:false,
+    /*autoValue: function() {
+      this.unset();
+    },*/
+    autoform: {
+      group: 'QS',
+      options: function() {
+        return QAttributes.find({},{sort: {name: 1}}).map(function(qa){return {label: qa.name, value: qa.name}});
+      }
+    }
+  },
+  qametric: {
+    label: 'Metric',
+    type: String,
+    optional:false,
+    /*autoValue: function() {
+      this.unset();
+    },*/
+    autoform: {
+      group: 'Response Measure',
+      options: function() {
+        return QAMetrics.find({},{sort: {name: 1}}).map(function(qa){return {label: qa.name, value: qa.name}});
+      }
+    }
   },
 });
 

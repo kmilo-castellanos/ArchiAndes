@@ -17,7 +17,3 @@ $ meteor npm install
 ```
 $ meteor
 ```
-or 
-```
-$ meteor npm run start
-```

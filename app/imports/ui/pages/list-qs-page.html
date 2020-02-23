@@ -6,21 +6,27 @@
           <thead>
           <tr>
             <th>Name</th>
-            <th>Source</th>
-            <th>Stimulus</th>
+            <th>Quality Attribute</th>
+            <th>Metric</th>
             <th>Edit</th>
           </tr>
           </thead>
 
           <tbody>
-          {{#each qs in qsList}}
+          {{#if not_empty_qsList}}  
+            {{#each qs in qsList}}
+              <tr>
+                <td>{{qs.name}}</td>
+                <td>{{qs.qa}}</td>
+                <td>{{qs.qametric}}</td>
+                <td><a href="{{pathFor 'Edit_QS_Page' _id=qs._id}}">Edit</a></td>
+              </tr>
+            {{/each}}
+          {{else}}
             <tr>
-              <td>{{qs.name}}</td>
-              <td>{{qs.source}}</td>
-              <td>{{qs.stimulus}}</td>
-              <td><a href="{{pathFor 'Edit_QS_Page' _id=qs._id}}">Edit</a></td>
+              <td colspan="4">There are no Quality Scenarios</td>
             </tr>
-          {{/each}}
+          {{/if}}
           </tbody>
         </table>
       {{else}}
