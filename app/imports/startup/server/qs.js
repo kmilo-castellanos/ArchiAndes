@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { Stuff,QAttributes,QAMetrics } from '../../api/qs/collections.js';
+import { Stuff,QAttributes,QAMetrics,Units} from '../../api/qs/collections.js';
 
 /**
  * A list of Stuff to pre-fill the Collection.
@@ -19,10 +19,19 @@ const qASeeds = [
 ];
 
 const metricsSeeds = [
-  { name: 'Latency' , qa:'Performance'},
-  { name: 'Throughput', qa:'Performance' },
-  { name: 'Deadline',qa:'Performance'},
-  { name: 'Update Time', qa:'Modifiability'},
+  { name: 'Latency' , qa:'Performance', dim:'Time'},
+  { name: 'Throughput', qa:'Performance', dim:'DataTransfer' },
+  { name: 'Deadline',qa:'Performance', dim:'Time'},
+  { name: 'Update Time', qa:'Modifiability', dim:'Time'},
+];
+
+const unitsSeeds = [
+  { name: 'Hours' , dim:'Time'},
+  { name: 'Minutes' , dim:'Time'},
+  { name: 'Seconds' , dim:'Time'},
+  { name: 'Millis' , dim:'Time'},
+  { name: 'Bits/seg', dim:'DataTransfer' },
+  { name: 'Messages/seg', dim:'DataTransfer' }
 ];
 
 
@@ -43,5 +52,11 @@ if (QAttributes.find().count() === 0) {
 if (QAMetrics.find().count() === 0) {
   _.each(metricsSeeds, function seedQAMetric(qametric) {
     QAMetrics.insert(qametric);
+  });
+}
+
+if (Units.find().count() === 0) {
+  _.each(unitsSeeds, function seedUnit(unit) {
+    Units.insert(unit);
   });
 }

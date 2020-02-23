@@ -11,6 +11,7 @@ export const QScenarios= new Mongo.Collection('QScenarios');
 
 export const QAMetrics= new Mongo.Collection('QAMetrics');
 
+export const Units= new Mongo.Collection('Units');
 
 
 /**
@@ -49,7 +50,7 @@ export const QSSchema = new SimpleSchema({
     optional: false,
     max: 20,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Name/Code',
     },
   },
@@ -58,7 +59,7 @@ export const QSSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Source',
     },
   },
@@ -67,7 +68,7 @@ export const QSSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Stimulus',
     },
   },
@@ -76,7 +77,7 @@ export const QSSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Artifact (description)',
     },
   },
@@ -85,7 +86,7 @@ export const QSSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Environment',
     },
   },
@@ -94,7 +95,7 @@ export const QSSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoform: {
-      group: 'QS',
+      group: 'Quality Scenario',
       placeholder: 'Response',
     },
   },
@@ -106,7 +107,8 @@ export const QSSchema = new SimpleSchema({
       this.unset();
     },*/
     autoform: {
-      group: 'QS',
+      firstOption: 'Select Quality Attribute',
+      group: 'Quality Scenario',
       options: function() {
         return QAttributes.find({},{sort: {name: 1}}).map(function(qa){return {label: qa.name, value: qa.name}});
       }
@@ -115,17 +117,55 @@ export const QSSchema = new SimpleSchema({
   qametric: {
     label: 'Metric',
     type: String,
-    optional:false,
-    /*autoValue: function() {
-      this.unset();
-    },*/
+    allowedValues: function() {
+      return QAMetrics.find({}).map(function(metric){return metric.name;});
+    },
     autoform: {
       group: 'Response Measure',
+      firstOption: 'Select Metric',
       options: function() {
-        return QAMetrics.find({},{sort: {name: 1}}).map(function(qa){return {label: qa.name, value: qa.name}});
+        var selqa = AutoForm.getFieldValue('qa');
+        return QAMetrics.find({qa: selqa},{sort: {name: 1}}).map(function(metric){return {label: metric.name, value: metric.name}});
       }
     }
   },
+  unit: {
+    label: 'Unit',
+    type: String,
+    allowedValues: function() {
+      return Units.find({}).map(function(unit){return unit.name;});
+    },
+    autoform: {
+      group: 'Response Measure',
+      firstOption: 'Select Unit',
+      options: function() {
+        /*var seldim = AutoForm.getFieldValue('dim');
+        return Units.find({dim: seldim},{sort: {name: 1}}).map(function(unit){return {label: unit.name, value: unit.name}});*/
+        return Units.find({},{sort: {dim: 1}}).map(function(unit){return {label: unit.name, value: unit.name}});
+
+      }
+    }
+  },
+  minVal: {
+    label: 'Min Value',
+    type: Number,
+    decimal: true,
+    optional: false,
+    autoform: {
+      group: 'Response Measure',
+      placeholder: '0'
+    },
+  },
+  maxVal: {
+    label: 'Max Value',
+    type: Number,
+    decimal: true,
+    optional: false,
+    autoform: {
+      group: 'Response Measure',
+      placeholder: '0'
+    },
+  }
 });
 
 
