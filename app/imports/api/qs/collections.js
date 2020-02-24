@@ -13,6 +13,8 @@ export const QAMetrics= new Mongo.Collection('QAMetrics');
 
 export const Units= new Mongo.Collection('Units');
 
+export const AProjects= new Mongo.Collection('AProjects');
+
 
 /**
  * Create the schema for Stuff
@@ -39,11 +41,40 @@ export const StuffSchema = new SimpleSchema({
   },
 });
 
+/**
+ * Create the schema for Project
+ */
+export const AProjectSchema = new SimpleSchema({
+  name: {
+    label: 'Name',
+    type: String,
+    optional: false,
+    max: 20,
+    autoform: {
+      group: 'Project',
+      placeholder: 'Project name',
+    },
+  }
+});
+
 
 /**
  * Create the schema for QS
  */
 export const QSSchema = new SimpleSchema({
+  
+  project: {
+    label: 'Project',
+    type: String,
+    optional:false,
+    autoform: {
+      firstOption: 'Select Project',
+      group: 'Quality Scenario',
+      options: function() {
+        return AProjects.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+      }
+    }
+  },
   name: {
     label: 'Name',
     type: String,
@@ -168,7 +199,6 @@ export const QSSchema = new SimpleSchema({
   }
 });
 
-
+AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
 Stuff.attachSchema(StuffSchema);
-

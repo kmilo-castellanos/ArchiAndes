@@ -1,0 +1,13 @@
+<template name="Add_PJ_Page">
+    {{#If_Logged_In}}
+      <div style="padding-top: 20px" class="ui text container">
+        {{> quickForm
+        collection=pjCollection
+        template="semanticUI"
+        id="AddPJForm"
+        type="insert"
+        resetOnSuccess=true}}
+      </div>
+    {{/If_Logged_In}}
+  </template>
+  

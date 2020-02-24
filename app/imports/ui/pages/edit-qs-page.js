@@ -1,7 +1,7 @@
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
-import { Stuff, QScenarios } from '../../api/qs/collections.js';
+import { QScenarios } from '../../api/qs/collections.js';
 
 /* eslint-disable object-shorthand, no-unused-vars */
 
@@ -10,9 +10,9 @@ import { Stuff, QScenarios } from '../../api/qs/collections.js';
  * See: https://github.com/aldeed/meteor-autoform#callbackshooks
  */
 AutoForm.hooks({
-  EditStuffForm: {
+  EditQSForm: {
     /**
-     * After successful form submission, go to List_Stuff_Page.
+     * After successful form submission, go to List_QS_Page.
      * @param formType The form.
      * @param result The result of form submission.
      */
