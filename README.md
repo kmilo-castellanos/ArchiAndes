@@ -11,6 +11,8 @@ To run this application:
 
 ```
 $ meteor npm install
+$ meteor npm install --save autoprefixer
+$ meteor npm install --save babel-runtime
 ```
 * Finally, run the meteor aplicacion. Within the app folder execute:
 
