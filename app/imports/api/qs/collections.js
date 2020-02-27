@@ -47,7 +47,7 @@ export const AQSchema = new SimpleSchema({
     },
   },
   rationale: {
-    label: 'Code',
+    label: 'Rationale',
     type: String,
     optional: false,
     max: 200,
