@@ -374,6 +374,7 @@ DiagramEditor.prototype.save = function(data, draft, elt)
 		this.setElementData(elt, data);
 		DiagramEditor.diagInstance=data;
 		console.log(data);
+		
 		this.done(data, draft, elt);
 	}
 };
