@@ -18,3 +18,7 @@ import './edit-pj-page.js';
 
 import './list-pj-page.html';
 import './list-pj-page.js';
+
+import './add-aq-page.html';
+import './add-aq-page.js';
+//import 'diagram-editor.js';

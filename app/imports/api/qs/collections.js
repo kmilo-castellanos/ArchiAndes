@@ -3,11 +3,11 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /* eslint-disable object-shorthand */
 
-export const Stuff = new Mongo.Collection('Stuff');
-
 export const QAttributes = new Mongo.Collection('QAttributes');
 
 export const QScenarios= new Mongo.Collection('QScenarios');
+
+export const AQScenarios= new Mongo.Collection('AQScenarios');
 
 export const QAMetrics= new Mongo.Collection('QAMetrics');
 
@@ -15,31 +15,6 @@ export const Units= new Mongo.Collection('Units');
 
 export const AProjects= new Mongo.Collection('AProjects');
 
-
-/**
- * Create the schema for Stuff
- */
-export const StuffSchema = new SimpleSchema({
-  name: {
-    label: 'Name',
-    type: String,
-    optional: false,
-    max: 20,
-    autoform: {
-      group: 'Stuff',
-      placeholder: 'Bicycle',
-    },
-  },
-  quantity: {
-    label: 'Quantity',
-    type: Number,
-    optional: false,
-    autoform: {
-      group: 'Stuff',
-      placeholder: '3',
-    },
-  },
-});
 
 /**
  * Create the schema for Project
@@ -53,6 +28,32 @@ export const AProjectSchema = new SimpleSchema({
     autoform: {
       group: 'Project',
       placeholder: 'Project name',
+    },
+  }
+});
+
+/**
+ * Create the schema for AQSchema
+ */
+export const AQSchema = new SimpleSchema({
+  name: {
+    label: 'Code',
+    type: String,
+    optional: false,
+    max: 20,
+    autoform: {
+      group: 'Analyzed Quality Scenario',
+      placeholder: 'Code',
+    },
+  },
+  rationale: {
+    label: 'Code',
+    type: String,
+    optional: false,
+    max: 200,
+    autoform: {
+      group: 'Analyzed Quality Scenario',
+      placeholder: 'Rationale',
     },
   }
 });
@@ -201,4 +202,5 @@ export const QSSchema = new SimpleSchema({
 
 AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
-Stuff.attachSchema(StuffSchema);
+AQScenarios.attachSchema(AQSchema);
+

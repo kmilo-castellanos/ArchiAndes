@@ -1,14 +1,11 @@
 import { _ } from 'meteor/underscore';
-import { Stuff,QAttributes,QAMetrics,Units} from '../../api/qs/collections.js';
+import { QAttributes,QAMetrics,Units} from '../../api/qs/collections.js';
 
 /**
- * A list of Stuff to pre-fill the Collection.
+ * A list of seeds to pre-fill the Collection.
  * @type {*[]}
  */
-const stuffSeeds = [
-  { name: 'Basket', quantity: 3 },
-  { name: 'Bicycle', quantity: 2 },
-];
+
 
 const qASeeds = [
   { name: 'Availability' },
@@ -36,13 +33,9 @@ const unitsSeeds = [
 
 
 /**
- * Initialize the Stuff collection if empty with seed data.
+ * Initialize the collections if empty with seed data.
  */
-if (Stuff.find().count() === 0) {
-  _.each(stuffSeeds, function seedStuffs(stuff) {
-    Stuff.insert(stuff);
-  });
-}
+
 if (QAttributes.find().count() === 0) {
   _.each(qASeeds, function seedQA(qa) {
     QAttributes.insert(qa);
