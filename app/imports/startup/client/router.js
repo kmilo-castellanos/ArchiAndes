@@ -65,3 +65,11 @@ FlowRouter.route('/add-aq', {
     BlazeLayout.render('App_Body', { main: 'Add_AQ_Page' });
   },
 });
+
+FlowRouter.route('/add-aq-lc', {
+  name: 'Add_AQ_LC_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Add_AQ_LC_Page' });
+  },
+});
+

@@ -1,0 +1,25 @@
+
+<template name="Add_AQ_LC_Page">
+{{#If_Logged_In}}
+    <div style="padding-top: 20px" class="ui text container">
+    {{> quickForm
+    collection=aqCollection
+    template="semanticUI"
+    id="AddAQForm"
+    type="insert"
+    resetOnSuccess=true}}
+    </div>
+    <div style="padding-top: 20px" class="ui text container">
+    <div class="ui segment af-fieldGroup">
+    <div>
+        <div class="ui top attached label af-fieldGroup-heading" >
+        Functional View 
+        </div>
+    </div>
+    <div style="width: 640px; height: 480px; margin: 10px; position: relative;">
+        <iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://www.lucidchart.com/documents/embeddedchart/303cc157-aa87-4dfe-863a-0f8e2d6f0327" id="6.ZBHlI4ptYj"></iframe>
+    </div>    
+    </div>
+    </div>
+{{/If_Logged_In}}
+</template>

@@ -21,4 +21,8 @@ import './list-pj-page.js';
 
 import './add-aq-page.html';
 import './add-aq-page.js';
+
+import './add-aq-lc-page.html';
+import './add-aq-lc-page.js';
+
 //import 'diagram-editor.js';

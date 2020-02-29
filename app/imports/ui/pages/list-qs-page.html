@@ -10,7 +10,9 @@
             <th>Quality Attribute</th>
             <th>Metric</th>
             <th>Edit</th>
-            <th>Analyze</th>
+            <th>Draw.io</th>
+            <th>Lucidchart</th>
+
 
           </tr>
           </thead>
@@ -24,12 +26,13 @@
                 <td>{{qs.qa}}</td>
                 <td>{{qs.qametric}}</td>
                 <td><a href="{{pathFor 'Edit_QS_Page' _id=qs._id}}">Edit</a></td>
-                <td><a href="{{ pathFor 'Add_AQ_Page' }}">Analyze</a></td>
+                <td><a href="{{ pathFor 'Add_AQ_Page' }}">Model</a></td>
+                <td><a href="{{ pathFor 'Add_AQ_LC_Page' }}">Model</a></td>
               </tr>
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="6">There are no Quality Scenarios</td>
+              <td colspan="7">There are no Quality Scenarios</td>
             </tr>
           {{/if}}
           </tbody>
