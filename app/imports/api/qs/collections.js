@@ -15,6 +15,8 @@ export const Units= new Mongo.Collection('Units');
 
 export const AProjects= new Mongo.Collection('AProjects');
 
+export const Constraints= new Mongo.Collection('Constraints');
+
 
 /**
  * Create the schema for Project
@@ -54,6 +56,53 @@ export const AQSchema = new SimpleSchema({
     autoform: {
       group: 'Analyzed Quality Scenario',
       placeholder: 'Rationale',
+    },
+  }
+});
+
+
+/**
+ * Create the schema for Constraints
+ */
+export const ConstraintSchema = new SimpleSchema({
+  code: {
+    label: 'Code',
+    type: String,
+    optional: false,
+    max: 20,
+    autoform: {
+      group: 'Constraint',
+      placeholder: 'Code',
+    },
+  },
+  description: {
+    label: 'Description',
+    type: String,
+    optional: false,
+    max: 200,
+    autoform: {
+      group: 'Constraint',
+      placeholder: 'Description',
+    },
+  },
+  type: {
+    label: 'Type',
+    type: String,
+    optional: false,
+    max: 20,
+    autoform: {
+      group: 'Constraint',
+      placeholder: 'Type',
+    },
+  },  
+  value: {
+    label: 'Value',
+    type: String,
+    optional: false,
+    max: 200,
+    autoform: {
+      group: 'Constraint',
+      placeholder: 'Value',
     },
   }
 });
@@ -203,4 +252,6 @@ export const QSSchema = new SimpleSchema({
 AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
 AQScenarios.attachSchema(AQSchema);
+Constrains.attachSchema(ConstraintSchema);
+
 
