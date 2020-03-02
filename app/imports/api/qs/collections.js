@@ -252,6 +252,6 @@ export const QSSchema = new SimpleSchema({
 AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
 AQScenarios.attachSchema(AQSchema);
-Constrains.attachSchema(ConstraintSchema);
+Constraints.attachSchema(ConstraintSchema);
 
 
