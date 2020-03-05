@@ -1,0 +1,13 @@
+<template name="Add_CO_Page">
+    {{#If_Logged_In}}
+      <div style="padding-top: 20px" class="ui text container">
+        {{> quickForm
+        collection=consCollection
+        template="semanticUI"
+        id="AddCOForm"
+        type="insert"
+        resetOnSuccess=true}}
+      </div>
+    {{/If_Logged_In}}
+  </template>
+  

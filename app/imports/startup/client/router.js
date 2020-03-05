@@ -73,3 +73,47 @@ FlowRouter.route('/add-aq-lc', {
   },
 });
 
+
+
+FlowRouter.route('/list-co', {
+  name: 'List_CO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'List_CO_Page' });
+  },
+});
+
+FlowRouter.route('/add-co', {
+  name: 'Add_CO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Add_CO_Page' });
+  },
+});
+
+FlowRouter.route('/edit-co/:_id', {
+  name: 'Edit_CO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Edit_CO_Page' });
+  },
+});
+
+
+FlowRouter.route('/list-de', {
+  name: 'List_DE_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'List_DE_Page' });
+  },
+});
+
+FlowRouter.route('/add-de', {
+  name: 'Add_DE_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Add_DE_Page' });
+  },
+});
+
+FlowRouter.route('/edit-de/:_id', {
+  name: 'Edit_DE_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Edit_DE_Page' });
+  },
+});

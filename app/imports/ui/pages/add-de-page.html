@@ -1,0 +1,13 @@
+<template name="Add_DE_Page">
+    {{#If_Logged_In}}
+      <div style="padding-top: 20px" class="ui text container">
+        {{> quickForm
+        collection=deCollection
+        template="semanticUI"
+        id="AddDEForm"
+        type="insert"
+        resetOnSuccess=true}}
+      </div>
+    {{/If_Logged_In}}
+  </template>
+  

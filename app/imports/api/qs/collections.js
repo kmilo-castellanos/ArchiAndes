@@ -3,19 +3,36 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /* eslint-disable object-shorthand */
 
+
+/**
+ * Initial Enumerations
+ * 
+*/
+
 export const QAttributes = new Mongo.Collection('QAttributes');
+
+export const QAMetrics= new Mongo.Collection('QAMetrics');
+
+export const ConstraintTypes= new Mongo.Collection('ConstraintTypes');
+
+export const Units= new Mongo.Collection('Units');
+
+/**
+ * Drivers
+ * 
+*/
+
+export const AProjects= new Mongo.Collection('AProjects');
+
+export const Constraints= new Mongo.Collection('Constraints');
 
 export const QScenarios= new Mongo.Collection('QScenarios');
 
 export const AQScenarios= new Mongo.Collection('AQScenarios');
 
-export const QAMetrics= new Mongo.Collection('QAMetrics');
+export const ArchDecisions= new Mongo.Collection('ArchDecisions');
 
-export const Units= new Mongo.Collection('Units');
 
-export const AProjects= new Mongo.Collection('AProjects');
-
-export const Constraints= new Mongo.Collection('Constraints');
 
 
 /**
@@ -49,15 +66,99 @@ export const AQSchema = new SimpleSchema({
     },
   },
   rationale: {
-    label: 'Rationale',
+    label: 'Reasoning',
     type: String,
     optional: false,
     max: 200,
     autoform: {
       group: 'Analyzed Quality Scenario',
-      placeholder: 'Rationale',
+      placeholder: 'Reasoning',
+      afFieldInput: {
+        type: "textarea",
+        rows: 3
+      }
     },
   }
+});
+
+/**
+ * Create the schema for Architecture Decisions
+ */
+export const ArchDecisionSchema = new SimpleSchema({
+  name: {
+    label: 'Name',
+    type: String,
+    optional: false,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Name',
+    },
+  },
+  model: {
+    label: 'Model',
+    type: String,
+    optional: true,
+    max: 500,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Model',
+    },
+  },
+  aqs: {
+    label: 'Analyzed QS',
+    type: String,
+    optional: true,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      firstOption: 'Select Analized QS',
+      options: function() {
+        return AQScenarios.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+      }
+    },
+  },
+  sensitivity: {
+    label: 'Sensitivity',
+    type: String,
+    optional: true,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Code',
+    },
+  },
+  tradeoff: {
+    label: 'Tradeoff',
+    type: String,
+    optional: true,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Code',
+    },
+  },
+  risk: {
+    label: 'Risk',
+    type: String,
+    optional: true,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Code',
+    },
+  },
+  norisk: {
+    label: 'No Risk',
+    type: String,
+    optional: true,
+    max: 20,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Code',
+    },
+  }
+
 });
 
 
@@ -75,6 +176,18 @@ export const ConstraintSchema = new SimpleSchema({
       placeholder: 'Code',
     },
   },
+  project: {
+    label: 'Project',
+    type: String,
+    optional:false,
+    autoform: {
+      firstOption: 'Select Project',
+      group: 'Constraint',
+      options: function() {
+        return AProjects.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+      }
+    }
+  },
   description: {
     label: 'Description',
     type: String,
@@ -91,8 +204,11 @@ export const ConstraintSchema = new SimpleSchema({
     optional: false,
     max: 20,
     autoform: {
+      firstOption: 'Select Type',
       group: 'Constraint',
-      placeholder: 'Type',
+      options: function() {
+        return ConstraintTypes.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+      }
     },
   },  
   value: {
@@ -251,7 +367,12 @@ export const QSSchema = new SimpleSchema({
 
 AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
-AQScenarios.attachSchema(AQSchema);
 Constraints.attachSchema(ConstraintSchema);
+AQScenarios.attachSchema(AQSchema);
+ArchDecisions.attachSchema(ArchDecisionSchema);
+
+
+
+
 
 

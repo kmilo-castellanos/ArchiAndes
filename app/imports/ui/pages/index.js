@@ -25,4 +25,23 @@ import './add-aq-page.js';
 import './add-aq-lc-page.html';
 import './add-aq-lc-page.js';
 
-//import 'diagram-editor.js';
+
+import './add-co-page.html';
+import './add-co-page.js';
+
+import './edit-co-page.html';
+import './edit-co-page.js';
+
+import './list-co-page.html';
+import './list-co-page.js';
+
+
+
+import './add-de-page.html';
+import './add-de-page.js';
+
+import './edit-de-page.html';
+import './edit-de-page.js';
+
+import './list-de-page.html';
+import './list-de-page.js';

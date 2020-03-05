@@ -1,0 +1,14 @@
+<template name="Edit_CO_Page">
+    {{#If_Logged_In}}
+      <div style="padding-top: 20px" class="ui text container">
+        {{> quickForm
+        collection=coCollection
+        template="semanticUI"
+        id="EditCOForm"
+        type="update"
+        doc=getDoc
+        buttonContent="Update"
+        }}
+      </div>
+    {{/If_Logged_In}}
+  </template>

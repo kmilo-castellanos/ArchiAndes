@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { QAttributes,QAMetrics,Units} from '../../api/qs/collections.js';
+import { QAttributes,QAMetrics,Units,ConstraintTypes} from '../../api/qs/collections.js';
 
 /**
  * A list of seeds to pre-fill the Collection.
@@ -22,6 +22,13 @@ const metricsSeeds = [
   { name: 'Update Time', qa:'Modifiability', dim:'Time'},
 ];
 
+const coTypesSeeds = [
+  { name: 'Technology'},
+  { name: 'Vendor' },
+  { name: 'Environment'},
+  { name: 'Cloud Model' }
+];
+
 const unitsSeeds = [
   { name: 'Hours' , dim:'Time'},
   { name: 'Minutes' , dim:'Time'},
@@ -30,7 +37,6 @@ const unitsSeeds = [
   { name: 'Bits/seg', dim:'DataTransfer' },
   { name: 'Messages/seg', dim:'DataTransfer' }
 ];
-
 
 /**
  * Initialize the collections if empty with seed data.
@@ -51,5 +57,11 @@ if (QAMetrics.find().count() === 0) {
 if (Units.find().count() === 0) {
   _.each(unitsSeeds, function seedUnit(unit) {
     Units.insert(unit);
+  });
+}
+
+if (ConstraintTypes.find().count() === 0) {
+  _.each(coTypesSeeds, function seedType(coType) {
+    ConstraintTypes.insert(coType);
   });
 }

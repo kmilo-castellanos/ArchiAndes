@@ -1,0 +1,36 @@
+<template name="List_CO_Page">
+  {{#If_Logged_In}}
+    <div class="ui text container">
+      {{#if Template.subscriptionsReady}}
+        <table style="margin-top: 20px" class="ui celled table">
+          <thead>
+          <tr>
+            <th>Code</th>
+            <th>Project</th>
+            <th>Type</th>
+            <th>Edit</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#if not_empty_coList}}  
+            {{#each co in coList}}
+              <tr>
+                <td>{{co.code}}</td>
+                <td>{{co.project}}</td>
+                <td>{{co.type}}</td>
+                <td><a href="{{pathFor 'Edit_CO_Page' _id=co._id}}">Edit</a></td>
+              </tr>
+            {{/each}}
+          {{else}}
+            <tr>
+              <td colspan="7">There are no Constraints</td>
+            </tr>
+          {{/if}}
+          </tbody>
+        </table>
+      {{else}}
+        {{> Loading}}
+      {{/if}}
+    </div>
+  {{/If_Logged_In}}
+</template>
