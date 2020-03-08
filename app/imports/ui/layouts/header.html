@@ -1,16 +1,32 @@
 <template name="Header">
     <div class="ui top fixed borderless inverted menu">
   <div class="ui container">
-      <a class="item" href="{{pathFor 'Home_Page'}}"><h1>Architecture Inputs</h1></a>
+      <a class="item" href="{{pathFor 'Home_Page'}}"><h1>Archinputs</h1></a>
       {{#if currentUser}}
-        <a class="{{ isActiveRoute 'List_PJ_Page'}} item" href="{{ pathFor 'List_PJ_Page' }}">Projects</a>
-        <a class="{{ isActiveRoute 'Add_PJ_Page'}} item" href="{{ pathFor 'Add_PJ_Page' }}">Add Project</a>
-        <a class="{{ isActiveRoute 'List_CO_Page'}} item" href="{{ pathFor 'List_CO_Page' }}">Constraints</a>
-        <a class="{{ isActiveRoute 'Add_CO_Page'}} item" href="{{ pathFor 'Add_CO_Page' }}">Add Constraint</a>
-        <a class="{{ isActiveRoute 'List_QS_Page'}} item" href="{{ pathFor 'List_QS_Page' }}">Quality Scenarios</a>
-        <a class="{{ isActiveRoute 'Add_QS_Page'}} item" href="{{ pathFor 'Add_QS_Page' }}">Add Quality Scenario</a>
-        <a class="{{ isActiveRoute 'List_DE_Page'}} item" href="{{ pathFor 'List_DE_Page' }}">Decisions</a>
-        <a class="{{ isActiveRoute 'Add_DE_Page'}} item" href="{{ pathFor 'Add_DE_Page' }}">Add Decision</a>
+        <div class="ui simple dropdown item"><i class="folder open icon"></i> Projects<i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="{{ isActiveRoute 'List_PJ_Page'}} item" href="{{ pathFor 'List_PJ_Page' }}"><i class="list icon"></i>List</a>
+            <a class="{{ isActiveRoute 'Add_PJ_Page'}} item" href="{{ pathFor 'Add_PJ_Page' }}" ><i class="add icon"></i> Add</a>
+          </div>
+        </div>
+        <div class="ui simple dropdown item"><i class="exclamation triangle icon"></i> Constraints<i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="{{ isActiveRoute 'List_CO_Page'}} item" href="{{ pathFor 'List_CO_Page' }}"><i class="list icon"></i>List</a>
+            <a class="{{ isActiveRoute 'Add_CO_Page'}} item" href="{{ pathFor 'Add_CO_Page' }}" ><i class="add icon"></i> Add</a>
+          </div>
+        </div>
+        <div class="ui simple dropdown item"><i class="crosshairs icon"></i> Quality Scenarios<i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="{{ isActiveRoute 'List_QS_Page'}} item" href="{{ pathFor 'List_QS_Page' }}"><i class="list icon"></i>List</a>
+            <a class="{{ isActiveRoute 'Add_QS_Page'}} item" href="{{ pathFor 'Add_QS_Page' }}" > <i class="add icon"></i> Add</a>
+          </div>
+        </div>
+        <div class="ui simple dropdown item"><i class="lightbulb outline icon"></i> Decisions<i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="{{ isActiveRoute 'List_DE_Page'}} item" href="{{ pathFor 'List_DE_Page' }}"><i class="list icon"></i>List</a>
+            <a class="{{ isActiveRoute 'Add_DE_Page'}} item" href="{{ pathFor 'Add_DE_Page' }}" ><i class="add icon"></i>  Add</a>
+          </div>
+        </div>
       {{/if}}
       <a href="#" class="right aligned item">{{> loginButtons align="right"}} </a>
     </div>
