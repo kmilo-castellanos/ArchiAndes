@@ -9,11 +9,11 @@
             </div>
           </div>
           <div style="padding-top: 20px;">
-            <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{getDoc.model}}" style="cursor:pointer;">
+            <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{getDoc.data}}" style="cursor:pointer;">
           </div>
           </div>
         </div>
-        
+
         {{> quickForm
         collection=deCollection
         template="semanticUI"

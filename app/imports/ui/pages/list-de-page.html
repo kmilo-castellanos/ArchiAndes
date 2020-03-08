@@ -7,7 +7,6 @@
           <tr>
             <th>Name</th>
             <th>Analized QS</th>
-            <th>Sensitivity</th>
             <th>Edit</th>
           </tr>
           </thead>
@@ -17,13 +16,12 @@
               <tr>
                 <td>{{de.name}}</td>
                 <td>{{de.aqs}}</td>
-                <td>{{de.sensitivity}}</td>
                 <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}">Edit</a></td>
               </tr>
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="7">There are no Architecture Decisions</td>
+              <td colspan="3">There are no Architecture Decisions</td>
             </tr>
           {{/if}}
           </tbody>

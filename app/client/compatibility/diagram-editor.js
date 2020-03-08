@@ -311,11 +311,17 @@ DiagramEditor.prototype.handleMessage = function(msg)
 	}
 	else if (msg.event == 'autosave')
 	{
+		console.log("Msg Autosave:");
+		console.log(msg.xml);
 		this.save(msg.xml, true, this.startElement);
+
 	}
 	else if (msg.event == 'export')
 	{
-		this.save(msg.data, false, this.startElement);
+		console.log("Msg Export:");
+		console.log(msg.xml);
+		console.log(msg.data);
+		this.save(msg,false, this.startElement);
 		this.stopEditing();
 	}
 	else if (msg.event == 'save')
@@ -368,20 +374,23 @@ DiagramEditor.prototype.initializeEditor = function()
 /**
  * Saves the given data.
  */
-DiagramEditor.prototype.save = function(data, draft, elt)
+DiagramEditor.prototype.save = function(msg, draft, elt)
 {
 	if (elt != null && !draft)
 	{
-		this.setElementData(elt, data);
-		DiagramEditor.diagInstance=data;
-		console.log(this.formType)
-		console.log(data.length);
+		this.setElementData(elt, msg.data);
+		console.log(this.formType);
+		console.log(msg.data);
+		console.log(msg.xml)
+		//var xml = window.atob(data.substring(data.indexOf(',') + 1));
+		//console.log(xml);
 		var formName="#AddDEForm";
 		if (this.formType!='addDiagram'){
 			formName="#EditDEForm";
 		}
-		document.querySelector(formName + " > div.ui.segment.af-fieldGroup > input[type=hidden]").value=data;
-		this.done(data, draft, elt);
+		document.querySelector(formName + " > input[type=hidden]:nth-child(1)").value=msg.xml;
+		document.querySelector(formName + " > input[type=hidden]:nth-child(2)").value=msg.data;
+		this.done(msg.data, draft, elt);
 	}
 };
 

@@ -95,14 +95,21 @@ export const ArchDecisionSchema = new SimpleSchema({
       placeholder: 'Name',
     },
   },
-  model: {
-    label: 'Model',
+  xml: {
+    label: 'xml',
     type: String,
     optional: true,
     max: 10000,
     autoform: {
-      group: 'Architectural Decision',
-      placeholder: 'Model',
+      type: 'hidden'
+    },
+  },
+  data: {
+    label: 'data',
+    type: String,
+    optional: true,
+    max: 20000,
+    autoform: {
       type: 'hidden'
     },
   },
