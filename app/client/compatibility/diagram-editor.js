@@ -82,6 +82,7 @@ DiagramEditor.prototype.editElement = function(elem)
 {
 	var src = this.getElementData(elem);
 	this.startElement = elem;
+	this.formType=elem.id;
 	var fmt = this.format;
 
 	if (src.substring(0, 15) === 'data:image/png;')
@@ -373,8 +374,13 @@ DiagramEditor.prototype.save = function(data, draft, elt)
 	{
 		this.setElementData(elt, data);
 		DiagramEditor.diagInstance=data;
-		console.log(data);
-		
+		console.log(this.formType)
+		console.log(data.length);
+		var formName="#AddDEForm";
+		if (this.formType!='addDiagram'){
+			formName="#EditDEForm";
+		}
+		document.querySelector(formName + " > div.ui.segment.af-fieldGroup > input[type=hidden]").value=data;
 		this.done(data, draft, elt);
 	}
 };

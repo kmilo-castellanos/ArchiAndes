@@ -99,10 +99,11 @@ export const ArchDecisionSchema = new SimpleSchema({
     label: 'Model',
     type: String,
     optional: true,
-    max: 500,
+    max: 10000,
     autoform: {
       group: 'Architectural Decision',
       placeholder: 'Model',
+      type: 'hidden'
     },
   },
   aqs: {
@@ -118,7 +119,7 @@ export const ArchDecisionSchema = new SimpleSchema({
       }
     },
   },
-  sensitivity: {
+  /*sensitivity: {
     label: 'Sensitivity',
     type: String,
     optional: true,
@@ -157,7 +158,7 @@ export const ArchDecisionSchema = new SimpleSchema({
       group: 'Architectural Decision',
       placeholder: 'Code',
     },
-  }
+  }*/
 
 });
 
