@@ -37,12 +37,8 @@
               </thead>
               <tbody>
               {{#if not_empty_deCollection}}  
-                {{#each de in deCollection}}
-                  <tr>
-                    <td>{{de.name}}</td>
-                    <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}"><i class="edit icon"></i></a></td>
-                    <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}"><i class="delete icon"></i></a></td>
-                  </tr>
+                {{#each deCollection}}
+                  {{> elDecision}}
                 {{/each}}
               {{else}}
                 <tr>
@@ -55,4 +51,11 @@
     </div>
     {{/If_Logged_In}}
 </template>
-  
+
+<template name="elDecision">
+  <tr>
+    <td>{{name}}</td>
+    <td><a href="{{pathFor 'Edit_DE_Page' _id=_id}}"><i class="edit icon"></i></a></td>
+    <td><a class="deleteDecision" href="#"><i class="delete icon"></i></a></td>
+  </tr>
+</template>

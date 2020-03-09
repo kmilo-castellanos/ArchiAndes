@@ -9,7 +9,11 @@
             </div>
           </div>
           <div style="padding-top: 20px;">
+            {{#if emptyData}}
+            <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{defaultData}}" style="cursor:pointer;">
+            {{else}}
             <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{getDoc.data}}" style="cursor:pointer;">
+            {{/if}}
           </div>
           </div>
         </div>

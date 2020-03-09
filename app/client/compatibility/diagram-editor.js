@@ -95,7 +95,7 @@ DiagramEditor.prototype.editElement = function(elem)
 	{
 		fmt = 'xmlsvg';
 	}
-	console.log(src);
+	//console.log(src);
 	this.startEditing(src, fmt);
 
 	return this;
@@ -312,16 +312,16 @@ DiagramEditor.prototype.handleMessage = function(msg)
 	}
 	else if (msg.event == 'autosave')
 	{
-		console.log("Msg Autosave:");
-		console.log(msg.xml);
+		//console.log("Msg Autosave:");
+		//console.log(msg.xml);
 		this.save(msg.xml, true, this.startElement);
 
 	}
 	else if (msg.event == 'export')
 	{
-		console.log("Msg Export:");
-		console.log(msg.xml);
-		console.log(msg.data);
+		//console.log("Msg Export:");
+		//console.log(msg.xml);
+		//console.log(msg.data);
 		this.save(msg,false, this.startElement);
 		this.stopEditing();
 	}
@@ -380,17 +380,22 @@ DiagramEditor.prototype.save = function(msg, draft, elt)
 	if (elt != null && !draft)
 	{
 		this.setElementData(elt, msg.data);
-		console.log(msg.xml);
+		//console.log(msg.xml);
 		plainXml=decodeXML(msg.xml);
-		console.log(plainXml);
+		//console.log(plainXml);
 
 		//var xml = window.atob(data.substring(data.indexOf(',') + 1));
 		//console.log(xml);
 		//defining the origin form name to assign the data and xml
 		var formName="#AddDEForm";
 		if (this.formType!='addDiagram'){
-			formName="#EditDEForm";
+			if (this.formType=='addDiagramQS'){
+				formName="#AddDEQSForm";
+			}else{	
+				formName="#EditDEForm";
+			}
 		}
+		
 		document.querySelector(formName + " > input[type=hidden]:nth-child(1)").value=plainXml;
 		document.querySelector(formName + " > input[type=hidden]:nth-child(2)").value=msg.data;
 		this.done(msg.data, draft, elt);
@@ -405,17 +410,16 @@ DiagramEditor.prototype.save = function(msg, draft, elt)
 function decodeXML(xml){
 
 	startIndex=xml.indexOf('<diagram');
-	console.log("decoding")
-	console.log(startIndex);
+	//console.log("decoding")
+	//console.log(startIndex);
 	if(startIndex>0){ 	
 		startIndex=xml.indexOf(">",startIndex);
-		console.log(startIndex);
+		//console.log(startIndex);
 		endIndex=xml.indexOf('</diagram>');
-		console.log(endIndex);
-		console.log(xml.substring(startIndex + 1,endIndex));
-		//var plainXml = window.atob(xml.substring(startIndex + 1,endIndex));
+		//console.log(endIndex);
+		//console.log(xml.substring(startIndex + 1,endIndex));
 		var plainXml = decode(xml.substring(startIndex + 1,endIndex));
-		console.log(plainXml);
+		//console.log(plainXml);
 		return plainXml;
 	}else{
 		return	"";
@@ -634,8 +638,6 @@ function decode(data)
 	try
 	{
 		data = atob(data);
-		console.log("ATOB:");
-		console.log(data);
 	}
 	catch (e)
 	{
@@ -647,7 +649,6 @@ function decode(data)
 
 	try
 	{
-		console.log("INFLATE:");
 		data = bytesToString(pako.inflateRaw(data));
 	}
 	catch (e)
@@ -661,8 +662,6 @@ function decode(data)
 	try
 	{
 		data = decodeURIComponent(data);
-		console.log("Decode URI:");
-		console.log(data);
 	}
 	catch (e)
 	{

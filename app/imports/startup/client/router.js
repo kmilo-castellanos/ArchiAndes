@@ -111,6 +111,13 @@ FlowRouter.route('/add-de', {
   },
 });
 
+FlowRouter.route('/add-de/:_id', {
+  name: 'Add_DE_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Add_DE_Page' });
+  },
+});
+
 FlowRouter.route('/edit-de/:_id', {
   name: 'Edit_DE_Page',
   action() {

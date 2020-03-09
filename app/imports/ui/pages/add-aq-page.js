@@ -28,7 +28,7 @@ Template.Add_AQ_Page.helpers({
   not_empty_deCollection() {
     var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
     //console.log(qsElement.name);
-    var count=ArchDecisions.find({qs: qsElement.name},{sort: {name: 1}}).count();
+    var count=ArchDecisions.find({qs_name: qsElement.name},{sort: {name: 1}}).count();
     return count > 0;
   },
   aqCollection() {
@@ -39,7 +39,7 @@ Template.Add_AQ_Page.helpers({
   },
   deCollection() {
     var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
-    return ArchDecisions.find({qs: qsElement.name},{sort: {name: 1}});
+    return ArchDecisions.find({qs_name: qsElement.name},{sort: {name: 1}});
   }
 
 });
@@ -56,8 +56,14 @@ Template.Add_AQ_Page.events({
   },
   'click .add'() {
     var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
-    console.log("Entro a new decisions"+qsElement.name);
+    //console.log("Entro a new decisions"+qsElement.name);
+    FlowRouter.go("/add-de/" + qsElement._id);
+
     //Tasks.remove(qsElement._id);
+  },
+  'click .deleteDecision': function(event) {
+    event.preventDefault();
+    ArchDecisions.remove(this._id);
   },
 });
 
