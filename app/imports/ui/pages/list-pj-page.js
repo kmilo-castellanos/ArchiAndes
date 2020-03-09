@@ -8,12 +8,19 @@ Template.List_PJ_Page.helpers({
    */
   pjList() {
     var ls=AProjects.find();
-    console.log(ls);
+    //console.log(ls);
     return ls;
   },
   not_empty_pjList() {
     var count=AProjects.find().count();
-    console.log(count);
+    //console.log(count);
     return count > 0;
+  },
+});
+
+Template.List_PJ_Page.events({
+  'click .delete': function(event) {
+    event.preventDefault();
+    AProjects.remove(this._id);
   },
 });

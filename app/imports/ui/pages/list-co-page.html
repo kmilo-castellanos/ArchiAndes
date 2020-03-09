@@ -9,21 +9,17 @@
             <th>Project</th>
             <th>Type</th>
             <th>Edit</th>
+            <th>Delete</th>
           </tr>
           </thead>
           <tbody>
           {{#if not_empty_coList}}  
-            {{#each co in coList}}
-              <tr>
-                <td>{{co.code}}</td>
-                <td>{{co.project}}</td>
-                <td>{{co.type}}</td>
-                <td><a href="{{pathFor 'Edit_CO_Page' _id=co._id}}">Edit</a></td>
-              </tr>
+            {{#each coList}}
+              {{> constraint}}
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="7">There are no Constraints</td>
+              <td colspan="5">There are no Constraints</td>
             </tr>
           {{/if}}
           </tbody>
@@ -33,4 +29,14 @@
       {{/if}}
     </div>
   {{/If_Logged_In}}
+</template>
+
+<template name="constraint">
+  <tr>
+    <td>{{code}}</td>
+    <td>{{project}}</td>
+    <td>{{type}}</td>
+    <td><a href="{{pathFor 'Edit_CO_Page' _id=_id}}"><i class="edit icon"></i></a></td>
+    <td><a class="delete" href="#"><i class="delete icon"></i></a></td>
+  </tr>
 </template>

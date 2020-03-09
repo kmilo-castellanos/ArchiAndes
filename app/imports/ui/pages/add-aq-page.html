@@ -1,14 +1,58 @@
 <template name="Add_AQ_Page">
     {{#If_Logged_In}}
-      <div style="padding-top: 20px" class="ui text container">
-        {{> quickForm
-        collection=aqCollection
-        template="semanticUI"
-        id="AddAQForm"
-        type="insert"
-        resetOnSuccess=true}}
+    <div style="padding-top: 20px" class="ui text container">
+      <div class="ui segment af-fieldGroup">
+        <div class="ui top attached label af-fieldGroup-heading">Analyzed Quality Scenario</div>
+        <div class="field">
+          <label><strong>Quality Scenario:</strong> {{getQS.name}}</label>
+        </div>
+        <br/>
+        <form class="ui form" name="uForm" id="uForm">
+          <div class="field required">
+            <label for="rationaleText" >Rationale</label> 
+            <textarea rows="2" name="rationaleText" id="rationaleText" required="" data-schema-key="rationale" maxlength="200">{{getQS.rationale}}</textarea>
+          </div>
+          <div class="field __web-inspector-hide-shortcut__">
+            <button type="submit" class="ui positive update button">
+              Update
+            </button>
+          </div>  
+        </form>
+        </div>
+        
       </div>
-      
+        <div style="padding-top: 20px" class="ui text container">
+        <div class="ui segment af-fieldGroup">
+          <div class="ui top attached label af-fieldGroup-heading">Architecture Decisions</div>
+          <button class="ui positive add button">
+            <i class="add icon"></i> Add Decision
+          </button>
+            <table style="margin-top: 20px" class="ui celled table">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#if not_empty_deCollection}}  
+                {{#each de in deCollection}}
+                  <tr>
+                    <td>{{de.name}}</td>
+                    <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}"><i class="edit icon"></i></a></td>
+                    <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}"><i class="delete icon"></i></a></td>
+                  </tr>
+                {{/each}}
+              {{else}}
+                <tr>
+                  <td colspan="3">There are no Architecture Decisions</td>
+                </tr>
+              {{/if}}
+              </tbody>
+            </table>
+        </div>
+    </div>
     {{/If_Logged_In}}
-  </template>
+</template>
   

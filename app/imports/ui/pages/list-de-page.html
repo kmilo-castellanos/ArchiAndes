@@ -6,22 +6,19 @@
           <thead>
           <tr>
             <th>Name</th>
-            <th>Analized QS</th>
+            <th>QS</th>
             <th>Edit</th>
+            <th>Delete</th>
           </tr>
           </thead>
           <tbody>
           {{#if not_empty_deList}}  
-            {{#each de in deList}}
-              <tr>
-                <td>{{de.name}}</td>
-                <td>{{de.aqs}}</td>
-                <td><a href="{{pathFor 'Edit_DE_Page' _id=de._id}}">Edit</a></td>
-              </tr>
+            {{#each deList}}
+              {{> decision}}
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="3">There are no Architecture Decisions</td>
+              <td colspan="4">There are no Architecture Decisions</td>
             </tr>
           {{/if}}
           </tbody>
@@ -31,4 +28,13 @@
       {{/if}}
     </div>
   {{/If_Logged_In}}
+</template>
+
+<template name="decision">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{qs_name}}</td>
+    <td><a href="{{pathFor 'Edit_DE_Page' _id=_id}}"><i class="edit icon"></i></a></td>
+    <td><a href="#" class="delete"><i class="delete icon"></i></a></td>
+  </tr>
 </template>

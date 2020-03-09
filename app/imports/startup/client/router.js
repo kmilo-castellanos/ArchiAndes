@@ -59,7 +59,7 @@ FlowRouter.notFound = {
 };
 
 
-FlowRouter.route('/add-aq', {
+FlowRouter.route('/add-aq/:_id', {
   name: 'Add_AQ_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'Add_AQ_Page' });

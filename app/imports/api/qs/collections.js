@@ -33,8 +33,6 @@ export const AQScenarios= new Mongo.Collection('AQScenarios');
 export const ArchDecisions= new Mongo.Collection('ArchDecisions');
 
 
-
-
 /**
  * Create the schema for Project
  */
@@ -113,16 +111,16 @@ export const ArchDecisionSchema = new SimpleSchema({
       type: 'hidden'
     },
   },
-  aqs: {
-    label: 'Analyzed QS',
+  qs_name: {
+    label: 'Quality Scenario',
     type: String,
     optional: true,
     max: 20,
     autoform: {
       group: 'Architectural Decision',
-      firstOption: 'Select Analized QS',
+      firstOption: 'Select QS',
       options: function() {
-        return AQScenarios.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+        return QScenarios.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
       }
     },
   },
@@ -166,7 +164,6 @@ export const ArchDecisionSchema = new SimpleSchema({
       placeholder: 'Code',
     },
   }*/
-
 });
 
 
@@ -230,7 +227,6 @@ export const ConstraintSchema = new SimpleSchema({
     },
   }
 });
-
 
 /**
  * Create the schema for QS
@@ -370,7 +366,15 @@ export const QSSchema = new SimpleSchema({
       group: 'Response Measure',
       placeholder: '0'
     },
-  }
+  },
+  rationale: {
+    type: String,
+    optional: true,
+    max: 300,
+    autoform: {
+        type: "hidden"
+    }
+  }  
 });
 
 AProjects.attachSchema(AProjectSchema);
@@ -378,9 +382,3 @@ QScenarios.attachSchema(QSSchema);
 Constraints.attachSchema(ConstraintSchema);
 AQScenarios.attachSchema(AQSchema);
 ArchDecisions.attachSchema(ArchDecisionSchema);
-
-
-
-
-
-

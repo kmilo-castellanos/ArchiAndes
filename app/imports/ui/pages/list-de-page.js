@@ -14,3 +14,11 @@ Template.List_DE_Page.helpers({
     return ArchDecisions.find().count() > 0;
   },
 });
+
+
+Template.List_DE_Page.events({
+  'click .delete': function(event) {
+    event.preventDefault();
+    ArchDecisions.remove(this._id);
+  },
+});

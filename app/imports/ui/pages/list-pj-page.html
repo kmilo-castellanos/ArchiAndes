@@ -7,20 +7,18 @@
             <tr>
               <th>Name</th>
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
             </thead>
   
             <tbody>
             {{#if not_empty_pjList}}  
-              {{#each pj in pjList}}
-                <tr>
-                  <td>{{pj.name}}</td>
-                  <td><a href="{{pathFor 'Edit_PJ_Page' _id=pj._id}}">Edit</a></td>
-                </tr>
+              {{#each pjList}}
+                {{> project}}
               {{/each}}
             {{else}}
               <tr>
-                <td colspan="2">There are no Projects</td>
+                <td colspan="3">There are no Projects</td>
               </tr>
             {{/if}}
             </tbody>
@@ -32,3 +30,11 @@
     {{/If_Logged_In}}
   </template>
   
+
+  <template name="project">
+    <tr>
+      <td>{{name}}</td>
+      <td><a href="{{pathFor 'Edit_PJ_Page' _id=_id}}"><i class="edit icon"></i></a></td>
+      <td><a class="delete" href="#"><i class="delete icon"></i></a></td>
+    </tr>
+  </template>

@@ -14,3 +14,11 @@ Template.List_CO_Page.helpers({
     return Constraints.find().count() > 0;
   },
 });
+
+Template.List_CO_Page.events({
+  'click .delete': function(event) {
+    //console.log("delete:"+this._id);
+    event.preventDefault();
+    Constraints.remove(this._id);
+  },
+});

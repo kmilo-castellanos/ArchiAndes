@@ -10,22 +10,14 @@
             <th>Quality Attribute</th>
             <th>Metric</th>
             <th>Edit</th>
-            <th>Draw.io</th>
-            <th>Lucidchart</th>
+            <th>Analyze</th>
+            <th>Delete</th>
           </tr>
           </thead>
           <tbody>
           {{#if not_empty_qsList}}  
-            {{#each qs in qsList}}
-              <tr>
-                <td>{{qs.name}}</td>
-                <td>{{qs.project}}</td>
-                <td>{{qs.qa}}</td>
-                <td>{{qs.qametric}}</td>
-                <td><a href="{{pathFor 'Edit_QS_Page' _id=qs._id}}">Edit</a></td>
-                <td><a href="{{ pathFor 'Add_AQ_Page' }}">Model</a></td>
-                <td><a href="{{ pathFor 'Add_AQ_LC_Page' }}">Model</a></td>
-              </tr>
+            {{#each qsList}}
+              {{> qscenario}}
             {{/each}}
           {{else}}
             <tr>
@@ -39,4 +31,17 @@
       {{/if}}
     </div>
   {{/If_Logged_In}}
+</template>
+
+
+<template name="qscenario">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{project}}</td>
+    <td>{{qa}}</td>
+    <td>{{qametric}}</td>
+    <td><a href="{{pathFor 'Edit_QS_Page' _id=_id}}"><i class="edit icon"></i></a></td >
+    <td><a href="{{pathFor 'Add_AQ_Page' _id=_id}}"><i class="flask icon"></i></a></td>
+    <td><a class="delete" href="#"><i class="delete icon"></i></a></td>
+  </tr>
 </template>

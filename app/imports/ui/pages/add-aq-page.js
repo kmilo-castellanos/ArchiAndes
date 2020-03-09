@@ -1,7 +1,7 @@
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
-import { AQScenarios } from '../../api/qs/collections.js';
+import { QScenarios, ArchDecisions } from '../../api/qs/collections.js';
 
 
 /* eslint-disable object-shorthand, no-unused-vars */
@@ -25,7 +25,40 @@ AutoForm.hooks({
 
 Template.Add_AQ_Page.helpers({
 
+  not_empty_deCollection() {
+    var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
+    //console.log(qsElement.name);
+    var count=ArchDecisions.find({qs: qsElement.name},{sort: {name: 1}}).count();
+    return count > 0;
+  },
   aqCollection() {
     return AQScenarios;
+  },
+  getQS() {
+    return QScenarios.findOne(FlowRouter.getParam('_id'));
+  },
+  deCollection() {
+    var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
+    return ArchDecisions.find({qs: qsElement.name},{sort: {name: 1}});
   }
+
 });
+
+Template.Add_AQ_Page.events({
+  'submit #uForm': function(event) {
+    event.preventDefault();
+    var rationaleValue = event.target.rationaleText.value;
+    var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
+    //console.log("Entro a update"+qsElement._id+",rationale:"+rationaleValue);
+    QScenarios.update(qsElement._id, {
+      $set: { rationale: rationaleValue },
+    });
+  },
+  'click .add'() {
+    var qsElement= QScenarios.findOne(FlowRouter.getParam('_id'));
+    console.log("Entro a new decisions"+qsElement.name);
+    //Tasks.remove(qsElement._id);
+  },
+});
+
+
