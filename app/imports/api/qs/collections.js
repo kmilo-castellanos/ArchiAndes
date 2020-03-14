@@ -46,6 +46,32 @@ export const AProjectSchema = new SimpleSchema({
       group: 'Project',
       placeholder: 'Project name',
     },
+  },
+  owner:{
+    type: String,
+    autoform: {
+      type: 'hidden'
+    },
+    autoValue: function() {
+      if (this.isInsert) {
+        return this.userId;
+      } 
+    }  
+  },
+  createdAt: {
+    type: Date,
+    autoform: {
+      type: 'hidden'
+    },
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date();
+      } else if (this.isUpsert) {
+        return {$setOnInsert: new Date()};
+      } else {
+        this.unset();  // Prevent user from supplying their own value
+      }
+    }
   }
 });
 
@@ -120,7 +146,12 @@ export const ArchDecisionSchema = new SimpleSchema({
       group: 'Architectural Decision',
       firstOption: 'Select QS',
       options: function() {
-        return QScenarios.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+        var pNames=[];
+        var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+        projLs.forEach(function(p){
+          pNames.push(p.name);
+        })
+        return QScenarios.find({project: {$in: pNames} },{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
       }
     },
   },
@@ -189,7 +220,7 @@ export const ConstraintSchema = new SimpleSchema({
       firstOption: 'Select Project',
       group: 'Constraint',
       options: function() {
-        return AProjects.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+        return AProjects.find({owner: Meteor.userId()},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
       }
     }
   },
@@ -241,7 +272,7 @@ export const QSSchema = new SimpleSchema({
       firstOption: 'Select Project',
       group: 'Quality Scenario',
       options: function() {
-        return AProjects.find({},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+        return AProjects.find({owner: Meteor.userId()},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
       }
     }
   },

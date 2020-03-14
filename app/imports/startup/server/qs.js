@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { QAttributes,QAMetrics,Units,ConstraintTypes} from '../../api/qs/collections.js';
+import { QAttributes,QAMetrics,Units,ConstraintTypes, AProjects} from '../../api/qs/collections.js';
 
 /**
  * A list of seeds to pre-fill the Collection.
@@ -65,3 +65,8 @@ if (ConstraintTypes.find().count() === 0) {
     ConstraintTypes.insert(coType);
   });
 }
+
+if (Meteor.isServer) {
+  AProjects._ensureIndex({ name: 1, owner: 1 }, { unique: true })
+}
+

@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { QScenarios } from '../../api/qs/collections.js'; 
+import { QScenarios,AProjects } from '../../api/qs/collections.js'; 
 
 Template.List_QS_Page.helpers({
 
@@ -7,11 +7,22 @@ Template.List_QS_Page.helpers({
    * @returns {*} All of the QSs.
    */
   qsList() {
-    var ls=QScenarios.find();
+    var pNames=[];
+    var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    projLs.forEach(function(p){
+      pNames.push(p.name);
+    })
+    //console.log(pNames);
+    var ls=QScenarios.find({project: {$in: pNames} });
     return ls;
   },
   not_empty_qsList() {
-    return QScenarios.find().count() > 0;
+    var pNames=[];
+    var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    projLs.forEach(function(p){
+      pNames.push(p.name);
+    })
+    return QScenarios.find({project: {$in: pNames} }).count() > 0;
   },
 });
 

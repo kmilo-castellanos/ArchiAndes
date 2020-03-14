@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { ArchDecisions } from '../../api/qs/collections.js'; 
+import { ArchDecisions,QScenarios,AProjects } from '../../api/qs/collections.js'; 
 
 Template.List_DE_Page.helpers({
 
@@ -7,11 +7,35 @@ Template.List_DE_Page.helpers({
    * @returns {*} All of the ArchDecisions.
    */
   deList() {
-    var ls=ArchDecisions.find();
+
+    var pNames=[];
+    var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    projLs.forEach(function(p){
+      pNames.push(p.name);
+    })
+    var qsLs=QScenarios.find({project: {$in: pNames} });
+    var qsNames=[];
+    qsLs.forEach(function(q){
+      qsNames.push(q.name);
+    })
+
+    var ls=ArchDecisions.find({qs_name: {$in: qsNames} });
     return ls;
   },
   not_empty_deList() {
-    return ArchDecisions.find().count() > 0;
+    var pNames=[];
+    var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    projLs.forEach(function(p){
+      pNames.push(p.name);
+    })
+    var qsLs=QScenarios.find({project: {$in: pNames} });
+    var qsNames=[];
+    qsLs.forEach(function(q){
+      qsNames.push(q.name);
+    })
+
+    var ls=ArchDecisions.find({qs_name: {$in: qsNames} });
+    return ls.count()>0;
   },
 });
 

@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Constraints } from '../../api/qs/collections.js'; 
+import { Constraints, AProjects } from '../../api/qs/collections.js'; 
 
 Template.List_CO_Page.helpers({
 
@@ -7,11 +7,19 @@ Template.List_CO_Page.helpers({
    * @returns {*} All of the Constraints.
    */
   coList() {
-    var ls=Constraints.find();
+    
+    var pNames=[];
+    var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    projLs.forEach(function(p){
+      pNames.push(p.name);
+    })
+    var ls=Constraints.find({project: {$in: pNames} });
+    //var ls=Constraints.find();
     return ls;
   },
   not_empty_coList() {
-    return Constraints.find().count() > 0;
+    var ids=['p1','A la Luna con Luna']
+    return ls=Constraints.find({project: {$in: ids} }).count() > 0;
   },
 });
 
