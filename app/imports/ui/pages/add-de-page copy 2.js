@@ -1,7 +1,7 @@
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
-import { ArchDecisions } from '../../api/qs/collections.js';
+import { ArchDecisions,QScenarios } from '../../api/qs/collections.js';
 
 /* eslint-disable object-shorthand, no-unused-vars */
 
@@ -25,13 +25,30 @@ AutoForm.hooks({
 Template.Add_DE_Page.helpers({
   deCollection() {
     return ArchDecisions;
-  }
+  },
+  getQScenarios(){ 
+    qsElement=QScenarios.findOne(FlowRouter.getParam('_id'));
+    return qsElement.name;
+  },
+  getProjects() {
+    var ls=AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+    return ls;
+  },
+  getSrcForm(){ 
+    if(FlowRouter.getParam('_id')!=null){
+      return "addDiagramQS";
+    }
+    return "addDiagram";
+  },
+  notQSName(){ 
+    return FlowRouter.getParam('_id')==null;
+  },
 });
 
-Template.Add_DE_Page.events({
+Template.Add_AQ_Page.events({
 'click #project': function (event) { 
   console.log('Template.Add_DE_Page.events click .project this._id: ' + $(event.currentTarget).find(':selected').data("id"));
-
+  
  }
 });
 

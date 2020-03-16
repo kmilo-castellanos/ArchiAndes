@@ -45,3 +45,13 @@ import './edit-de-page.js';
 
 import './list-de-page.html';
 import './list-de-page.js';
+
+
+import './add-mo-page.html';
+import './add-mo-page.js';
+
+import './edit-mo-page.html';
+import './edit-mo-page.js';
+
+import './list-mo-page.html';
+import './list-mo-page.js';

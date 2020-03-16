@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { QAttributes,QAMetrics,Units,ConstraintTypes, AProjects} from '../../api/qs/collections.js';
+import { QAttributes,QAMetrics,Viewpoints,Tactics,Units,ConstraintTypes, AProjects} from '../../api/qs/collections.js';
 
 /**
  * A list of seeds to pre-fill the Collection.
@@ -38,6 +38,28 @@ const unitsSeeds = [
   { name: 'Messages/seg', dim:'DataTransfer' }
 ];
 
+const viewpointSeeds = [
+  { name: 'Functional' },
+  { name: 'Deployment' },
+  { name: 'Concurrency'},
+  { name: 'Information'},
+  { name: 'Development'},
+  { name: 'Operational'}
+];
+
+
+const tacticsSeeds = [
+  { name: 'Increase Available Resources', group:'Resource Management', qa:'Performance'},
+  { name: 'Mantain Multiple Copies', group:'Resource Management',qa:'Performance'},
+  { name: 'Introduce Concurrency', group:'Resource Management',qa:'Performance'},
+  { name: 'Increase Computation Efficiency', group:'Resource Demand',qa:'Performance'},
+  { name: 'Reduce Computational Overhead', group:'Resource Demand',qa:'Performance'},
+  { name: 'Manage Event Rate', group:'Resource Demand',qa:'Performance'},
+  { name: 'Control Frequency of Sampling', group:'Resource Demand',qa:'Performance'},  
+  { name: 'Scheduling Policy', group:'Resource Arbitration',qa:'Performance'},
+  { name: 'Runtime Registration', group:'Defer Binding Time',qa:'Modifiability'}  
+
+];
 /**
  * Initialize the collections if empty with seed data.
  */
@@ -60,9 +82,23 @@ if (Units.find().count() === 0) {
   });
 }
 
+if (Viewpoints.find().count() === 0) {
+  _.each(viewpointSeeds, function seedViewpoint(v) {
+    Viewpoints.insert(v);
+  });
+}
+
 if (ConstraintTypes.find().count() === 0) {
   _.each(coTypesSeeds, function seedType(coType) {
     ConstraintTypes.insert(coType);
+  });
+}
+
+
+
+if (Tactics.find().count() === 0) {
+  _.each(tacticsSeeds, function seedTactic(tactic) {
+    Tactics.insert(tactic);
   });
 }
 

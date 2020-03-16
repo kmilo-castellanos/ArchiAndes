@@ -1,19 +1,23 @@
-<template name="Add_AQ_Page">
+<template name="Add_DE_Page">
     {{#If_Logged_In}}
     <div style="padding-top: 20px" class="ui text container">
       <div class="ui segment af-fieldGroup">
-        <div class="ui top attached label af-fieldGroup-heading">Analyzed Quality Scenario</div>
-        <div class="field">
-          <label><strong>Quality Scenario:</strong> {{getQS.name}}</label>
-        </div>
-        <br/>
+        <div class="ui top attached label af-fieldGroup-heading">Architecural Decision</div>
         <form class="ui form" name="uForm" id="uForm">
           <div class="field required">
-            <label for="rationaleText" >Rationale</label> 
-            <textarea rows="2" name="rationaleText" id="rationaleText" required="" data-schema-key="rationale" maxlength="200">{{getQS.rationale}}</textarea>
+            <label for="Name" >Name</label> 
+            <input type="input" required placeholder="Name" id="name" name="name" maxlength="20"/> 
+          </div>
+          <div class="field required">
+            <label for="project" >Project</label> 
+            <select class="input-large project" id="project" name="project">
+              {{#each getProjects}}
+                <option value="{{name}}" data-id={{name}}>{{name}}</option>
+              {{/each}}
+            </select>          
           </div>
           <div class="field __web-inspector-hide-shortcut__">
-            <button type="submit" class="ui positive update button">
+            <button type="submit" class="ui positive update button" >
               Update
             </button>
           </div>  
@@ -49,12 +53,5 @@
         </div>
     </div>
     {{/If_Logged_In}}
-</template>
-
-<template name="elDecision">
-  <tr>
-    <td>{{name}}</td>
-    <td><a href="{{pathFor 'Edit_DE_Page' _id=_id}}"><i class="edit icon"></i></a></td>
-    <td><a class="deleteDecision" href="#"><i class="delete icon"></i></a></td>
-  </tr>
-</template>
+  </template>
+  

@@ -1,0 +1,26 @@
+<template name="Add_MO_Page">
+    {{#If_Logged_In}}
+      
+    <div style="padding-top: 20px" class="ui text container">
+      <div style="padding-top: 20px" class="ui text container">
+        <div class="ui segment af-fieldGroup">
+        <div>
+          <div class="ui top attached label af-fieldGroup-heading" >
+            Model
+          </div>
+        </div>
+        <div style="padding-top: 20px;">
+          <img id='addDiagram' alt="Add Diagram" onclick='DiagramEditor.editElement(this)' src="{{defaultData}}" style="cursor:pointer;">
+        </div>
+        </div>
+      </div>
+      {{> quickForm
+        collection=moCollection
+        template="semanticUI"
+        id="AddMOForm"
+        type="insert"
+        resetOnSuccess=true}}
+      </div>      
+    {{/If_Logged_In}}
+  </template>
+  

@@ -17,6 +17,12 @@ export const ConstraintTypes= new Mongo.Collection('ConstraintTypes');
 
 export const Units= new Mongo.Collection('Units');
 
+export const Viewpoints= new Mongo.Collection('Viewpoints');
+
+export const Tactics= new Mongo.Collection('Tactics');
+
+
+
 /**
  * Drivers
  * 
@@ -32,6 +38,10 @@ export const AQScenarios= new Mongo.Collection('AQScenarios');
 
 export const ArchDecisions= new Mongo.Collection('ArchDecisions');
 
+export const ArchModels= new Mongo.Collection('ArchModels');
+
+
+
 
 /**
  * Create the schema for Project
@@ -41,7 +51,7 @@ export const AProjectSchema = new SimpleSchema({
     label: 'Name',
     type: String,
     optional: false,
-    max: 20,
+    max: 50,
     autoform: {
       group: 'Project',
       placeholder: 'Project name',
@@ -88,20 +98,6 @@ export const AQSchema = new SimpleSchema({
       group: 'Analyzed Quality Scenario',
       placeholder: 'Code',
     },
-  },
-  rationale: {
-    label: 'Reasoning',
-    type: String,
-    optional: false,
-    max: 200,
-    autoform: {
-      group: 'Analyzed Quality Scenario',
-      placeholder: 'Reasoning',
-      afFieldInput: {
-        type: "textarea",
-        rows: 3
-      }
-    },
   }
 });
 
@@ -113,35 +109,18 @@ export const ArchDecisionSchema = new SimpleSchema({
     label: 'Name',
     type: String,
     optional: false,
-    max: 20,
+    max: 100,
     autoform: {
       group: 'Architectural Decision',
       placeholder: 'Name',
     },
   },
-  xml: {
-    label: 'xml',
-    type: String,
-    optional: true,
-    max: 10000,
-    autoform: {
-      type: 'hidden'
-    },
-  },
-  data: {
-    label: 'data',
-    type: String,
-    optional: true,
-    max: 20000,
-    autoform: {
-      type: 'hidden'
-    },
-  },
+ 
   qs_name: {
     label: 'Quality Scenario',
     type: String,
     optional: true,
-    max: 20,
+    max: 100,
     autoform: {
       group: 'Architectural Decision',
       firstOption: 'Select QS',
@@ -155,7 +134,37 @@ export const ArchDecisionSchema = new SimpleSchema({
       }
     },
   },
-  /*sensitivity: {
+  tactic: {
+    label: 'Tactic',
+    type: String,
+    optional: false,
+    autoform: {
+      group: 'Architectural Decision',
+      firstOption: 'Select Tactic',
+      options: function() {
+        return Tactics.find({},{sort: {qa: 1,name: 1}}).map(function(tac){return {label: tac.qa + "/" + tac.name, value: tac.name}});
+      }
+    },
+  },
+  model_name: {
+    label: 'Model',
+    type: String,
+    optional: true,
+    max: 100,
+    autoform: {
+      group: 'Architectural Decision',
+      firstOption: 'Select Model',
+      options: function() {
+        var pNames=[];
+        var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
+        projLs.forEach(function(p){
+          pNames.push(p.name);
+        })
+        return ArchModels.find({project: {$in: pNames} },{sort: {name: 1}}).map(function(m){return {label: m.view + " - " +m.name, value: m.name}});
+      }
+    },
+  },
+  sensitivity: {
     label: 'Sensitivity',
     type: String,
     optional: true,
@@ -194,7 +203,21 @@ export const ArchDecisionSchema = new SimpleSchema({
       group: 'Architectural Decision',
       placeholder: 'Code',
     },
-  }*/
+  },
+  rationale: {
+    label: 'Reasoning',
+    type: String,
+    optional: false,
+    max: 200,
+    autoform: {
+      group: 'Architectural Decision',
+      placeholder: 'Reasoning',
+      afFieldInput: {
+        type: "textarea",
+        rows: 3
+      }
+    },
+  }
 });
 
 
@@ -206,7 +229,7 @@ export const ConstraintSchema = new SimpleSchema({
     label: 'Code',
     type: String,
     optional: false,
-    max: 20,
+    max: 100,
     autoform: {
       group: 'Constraint',
       placeholder: 'Code',
@@ -280,7 +303,7 @@ export const QSSchema = new SimpleSchema({
     label: 'Name',
     type: String,
     optional: false,
-    max: 20,
+    max: 100,
     autoform: {
       group: 'Quality Scenario',
       placeholder: 'Name/Code',
@@ -408,8 +431,65 @@ export const QSSchema = new SimpleSchema({
   }  
 });
 
+/**
+ * Create the schema for AQSchema
+ */
+export const ArchModelSchema = new SimpleSchema({
+  name: {
+    label: 'Name',
+    type: String,
+    optional: false,
+    max: 100,
+    autoform: {
+      group: 'Model',
+      placeholder: 'Name',
+    },
+  },
+  view: {
+    type: String,
+    optional: false,
+    autoform: {
+      group: 'Model',
+      firstOption: 'Select Unit',
+      options: function() {
+        return Viewpoints.find({},{sort: {name: 1}}).map(function(v){return {label: v.name, value: v.name}});
+      }
+
+    }
+  },
+  project: {
+    label: 'Project',
+    type: String,
+    optional:false,
+    autoform: {
+      firstOption: 'Select Project',
+      group: 'Model',
+      options: function() {
+        return AProjects.find({owner: Meteor.userId()},{sort: {name: 1}}).map(function(pj){return {label: pj.name, value: pj.name}});
+      }
+    }
+  },
+  xml: {
+    label: 'xml',
+    type: String,
+    optional: true,
+    autoform: {
+      type: 'hidden'
+    },
+  },
+  data: {
+    label: 'data',
+    type: String,
+    optional: true,
+    autoform: {
+      type: 'hidden'
+    }
+  }  
+});
+
 AProjects.attachSchema(AProjectSchema);
 QScenarios.attachSchema(QSSchema);
 Constraints.attachSchema(ConstraintSchema);
 AQScenarios.attachSchema(AQSchema);
 ArchDecisions.attachSchema(ArchDecisionSchema);
+ArchModels.attachSchema(ArchModelSchema);

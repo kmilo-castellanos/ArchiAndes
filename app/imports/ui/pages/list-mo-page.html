@@ -1,4 +1,4 @@
-<template name="List_QS_Page">
+<template name="List_MO_Page">
   {{#If_Logged_In}}
     <div class="ui text container">
       {{#if Template.subscriptionsReady}}
@@ -6,21 +6,20 @@
           <thead>
           <tr>
             <th>Name</th>
+            <th>View</th>
             <th>Project</th>
-            <th>Quality Attribute</th>
-            <th>Metric</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
           </thead>
           <tbody>
-          {{#if not_empty_qsList}}  
-            {{#each qsList}}
-              {{> qscenario}}
+          {{#if not_empty_moList}}  
+            {{#each moList}}
+              {{> archModel}}
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="6">There are no Quality Scenarios</td>
+              <td colspan="5">There are no Models</td>
             </tr>
           {{/if}}
           </tbody>
@@ -32,14 +31,12 @@
   {{/If_Logged_In}}
 </template>
 
-
-<template name="qscenario">
+<template name="archModel">
   <tr>
     <td>{{name}}</td>
+    <td>{{view}}</td>
     <td>{{project}}</td>
-    <td>{{qa}}</td>
-    <td>{{qametric}}</td>
-    <td><a href="{{pathFor 'Edit_QS_Page' _id=_id}}"><i class="edit icon"></i></a></td >
+    <td><a href="{{pathFor 'Edit_MO_Page' _id=_id}}"><i class="edit icon"></i></a></td>
     <td><a class="delete" href="#"><i class="delete icon"></i></a></td>
   </tr>
 </template>

@@ -387,13 +387,9 @@ DiagramEditor.prototype.save = function(msg, draft, elt)
 		//var xml = window.atob(data.substring(data.indexOf(',') + 1));
 		//console.log(xml);
 		//defining the origin form name to assign the data and xml
-		var formName="#AddDEForm";
+		var formName="#AddMOForm";
 		if (this.formType!='addDiagram'){
-			if (this.formType=='addDiagramQS'){
-				formName="#AddDEQSForm";
-			}else{	
-				formName="#EditDEForm";
-			}
+			formName="#EditMOForm";
 		}
 		
 		document.querySelector(formName + " > input[type=hidden]:nth-child(1)").value=plainXml;

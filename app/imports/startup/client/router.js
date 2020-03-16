@@ -124,3 +124,25 @@ FlowRouter.route('/edit-de/:_id', {
     BlazeLayout.render('App_Body', { main: 'Edit_DE_Page' });
   },
 });
+
+
+FlowRouter.route('/edit-mo/:_id', {
+  name: 'Edit_MO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Edit_MO_Page' });
+  },
+});
+
+FlowRouter.route('/list-mo', {
+  name: 'List_MO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'List_MO_Page' });
+  },
+});
+
+FlowRouter.route('/add-mo', {
+  name: 'Add_MO_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Add_MO_Page' });
+  },
+});
