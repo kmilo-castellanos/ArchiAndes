@@ -133,7 +133,7 @@ FlowRouter.route('/edit-mo/:_id', {
   },
 });
 
-FlowRouter.route('/list-mo', {
+FlowRouter.route('/list-mo/:_vname', {
   name: 'List_MO_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'List_MO_Page' });
@@ -144,5 +144,12 @@ FlowRouter.route('/add-mo', {
   name: 'Add_MO_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'Add_MO_Page' });
+  },
+});
+
+FlowRouter.route('/list-vi', {
+  name: 'List_VI_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'List_VI_Page' });
   },
 });

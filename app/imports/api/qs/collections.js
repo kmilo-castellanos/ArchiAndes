@@ -19,6 +19,8 @@ export const Units= new Mongo.Collection('Units');
 
 export const Viewpoints= new Mongo.Collection('Viewpoints');
 
+export const StyleCategories= new Mongo.Collection('StyleCategories');
+
 export const Tactics= new Mongo.Collection('Tactics');
 
 
@@ -445,14 +447,15 @@ export const ArchModelSchema = new SimpleSchema({
       placeholder: 'Name',
     },
   },
-  view: {
+  category: {
+    label: 'Style Category',
     type: String,
     optional: false,
     autoform: {
       group: 'Model',
-      firstOption: 'Select Unit',
+      firstOption: 'Select Style Category',
       options: function() {
-        return Viewpoints.find({},{sort: {name: 1}}).map(function(v){return {label: v.name, value: v.name}});
+        return StyleCategories.find({},{sort: {name: 1}}).map(function(f){return {label: f.name, value: f.name}});
       }
 
     }
@@ -484,7 +487,14 @@ export const ArchModelSchema = new SimpleSchema({
     autoform: {
       type: 'hidden'
     }
-  }  
+  },
+  view: {
+    type: String,
+    optional: false,
+    autoform: {
+      type: 'hidden'
+    }
+  }
 });
 
 AProjects.attachSchema(AProjectSchema);

@@ -9,27 +9,37 @@ Template.List_MO_Page.helpers({
   moList() {
     
     var pNames=[];
+    var vname=FlowRouter.getParam('_vname');
+    Session.set('sview', vname);
     var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
     projLs.forEach(function(p){
       pNames.push(p.name);
     })
-    var ls=ArchModels.find({project: {$in: pNames} });
+    var ls=ArchModels.find({project: {$in: pNames}, view:vname });
     //var ls=Constraints.find();
     return ls;
   },
   not_empty_moList() {
     var pNames=[];
+    var vname=FlowRouter.getParam('_vname');
     var projLs = AProjects.find({owner: Meteor.userId()},{sort: {name: 1}});
     projLs.forEach(function(p){
       pNames.push(p.name);
     })
-    return ArchModels.find({project: {$in: pNames} }).count() > 0;
+    return ArchModels.find({project: {$in: pNames} , view:vname}).count() > 0;
   },
+  get_view(){
+    return FlowRouter.getParam('_vname');
+  }  
 });
+
 
 Template.List_MO_Page.events({
   'click .delete': function(event) {
     event.preventDefault();
     ArchModels.remove(this._id);
+  },
+  'click .add'() {
+    FlowRouter.go("/add-mo/");
   },
 });

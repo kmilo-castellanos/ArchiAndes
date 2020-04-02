@@ -1,21 +1,8 @@
 <template name="Edit_MO_Page">
     {{#If_Logged_In}}
       <div style="padding-top: 20px" class="ui text container">
-        <div style="padding-top: 20px" class="ui text container">
-          <div class="ui segment af-fieldGroup">
-          <div>
-            <div class="ui top attached label af-fieldGroup-heading" >
-              Model
-            </div>
-          </div>
-          <div style="padding-top: 20px;">
-            {{#if emptyData}}
-            <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{defaultData}}" style="cursor:pointer;">
-            {{else}}
-            <img id='editDiagram' alt="Edit Diagram" onclick='DiagramEditor.editElement(this)' src="{{getDoc.data}}" style="cursor:pointer;">
-            {{/if}}
-          </div>
-          </div>
+        <div class="introduction">
+          <h3 class="ui header">{{get_view}} View</h3>
         </div>
         {{> quickForm
         collection=moCollection
@@ -23,8 +10,25 @@
         id="EditMOForm"
         type="update"
         doc=getDoc
+        omitFields="view"
         buttonContent="Update"
         }}
+      </div>
+      <div style="padding-top: 20px" class="ui text container">
+        <div class="ui segment af-fieldGroup">
+        <div>
+          <div class="ui top attached label af-fieldGroup-heading" >
+            Model
+          </div>
+        </div>
+        <div style="padding-top: 20px;">
+          {{#if emptyData}}
+          <img id='editDiagram' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{defaultData}}" style="cursor:pointer;">
+          {{else}}
+          <img id='editDiagram' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{getDoc.data}}" style="cursor:pointer;">
+          {{/if}}
+        </div>
+        </div>
       </div>
     {{/If_Logged_In}}
     

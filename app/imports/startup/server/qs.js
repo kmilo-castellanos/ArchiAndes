@@ -1,5 +1,5 @@
 import { _ } from 'meteor/underscore';
-import { QAttributes,QAMetrics,Viewpoints,Tactics,Units,ConstraintTypes, AProjects} from '../../api/qs/collections.js';
+import { QAttributes,QAMetrics,Viewpoints,Tactics,Units,ConstraintTypes,AProjects,StyleCategories} from '../../api/qs/collections.js';
 
 /**
  * A list of seeds to pre-fill the Collection.
@@ -39,14 +39,20 @@ const unitsSeeds = [
 ];
 
 const viewpointSeeds = [
-  { name: 'Functional' },
-  { name: 'Deployment' },
-  { name: 'Concurrency'},
-  { name: 'Information'},
-  { name: 'Development'},
-  { name: 'Operational'}
+  { name: 'Functional', icon: 'star'},
+  { name: 'Deployment', icon: 'server' },
+  { name: 'Concurrency', icon: 'random' },
+  { name: 'Information', icon: 'database'},
+  { name: 'Development', icon: 'code'},
+  { name: 'Operational', icon: 'cogs'}
 ];
 
+
+const categorySeeds = [
+  { name: 'Module'},
+  { name: 'Component-Connector' },
+  { name: 'Allocation' }
+];
 
 const tacticsSeeds = [
   { name: 'Increase Available Resources', group:'Resource Management', qa:'Performance'},
@@ -85,6 +91,12 @@ if (Units.find().count() === 0) {
 if (Viewpoints.find().count() === 0) {
   _.each(viewpointSeeds, function seedViewpoint(v) {
     Viewpoints.insert(v);
+  });
+}
+
+if (StyleCategories.find().count() === 0) {
+  _.each(categorySeeds, function seedCategory(c) {
+    StyleCategories.insert(c);
   });
 }
 

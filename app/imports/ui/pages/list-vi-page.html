@@ -1,0 +1,31 @@
+<template name="List_VI_Page">
+    {{#If_Logged_In}}
+      <div class="ui text container">
+        {{#if Template.subscriptionsReady}}
+          <table style="margin-top: 20px" class="ui celled table">
+            <thead>
+            <tr>
+              <th>View</th>
+            </tr>
+            </thead>
+            <tbody>
+              {{#each viewList}}
+                {{> view}}
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          {{> Loading}}
+        {{/if}}
+      </div>
+    {{/If_Logged_In}}
+  </template>
+  
+  
+  <template name="view">
+    <tr>
+      <td><a href="{{pathFor 'List_MO_Page' _vname=name}}">
+          <i class="{{icon}} icon"></i> {{name}}</a>
+      </td>
+    </tr>
+  </template>

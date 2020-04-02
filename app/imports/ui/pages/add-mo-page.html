@@ -2,6 +2,18 @@
     {{#If_Logged_In}}
       
     <div style="padding-top: 20px" class="ui text container">
+      <div class="introduction">
+        <h3 class="ui header">{{get_view}} View</h3>
+      </div>
+    
+      {{> quickForm
+        collection=moCollection
+        template="semanticUI"
+        id="AddMOForm"
+        doc=defaultDoc
+        type="insert"
+        resetOnSuccess=true}}
+      </div>
       <div style="padding-top: 20px" class="ui text container">
         <div class="ui segment af-fieldGroup">
         <div>
@@ -10,17 +22,10 @@
           </div>
         </div>
         <div style="padding-top: 20px;">
-          <img id='addDiagram' alt="Add Diagram" onclick='DiagramEditor.editElement(this)' src="{{defaultData}}" style="cursor:pointer;">
+          <img id='addDiagram' alt="Add Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src='{{defaultData}}' style="cursor:pointer;">
         </div>
         </div>
       </div>
-      {{> quickForm
-        collection=moCollection
-        template="semanticUI"
-        id="AddMOForm"
-        type="insert"
-        resetOnSuccess=true}}
-      </div>      
     {{/If_Logged_In}}
   </template>
   

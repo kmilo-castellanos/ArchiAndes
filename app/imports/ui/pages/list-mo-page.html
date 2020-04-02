@@ -1,12 +1,21 @@
 <template name="List_MO_Page">
   {{#If_Logged_In}}
     <div class="ui text container">
+      <br/>
+      <div class="introduction">
+        <h3 class="ui header">{{get_view}}  View</h3>
+      </div>
+      <br/>
       {{#if Template.subscriptionsReady}}
+      <div class="field __web-inspector-hide-shortcut__">
+        <button class="ui positive add button">
+          <i class="add icon"></i> Add Model
+        </button>
+      </div>  
         <table style="margin-top: 20px" class="ui celled table">
           <thead>
           <tr>
             <th>Name</th>
-            <th>View</th>
             <th>Project</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -19,7 +28,7 @@
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="5">There are no Models</td>
+              <td colspan="4">There are no {{get_view}} Models</td>
             </tr>
           {{/if}}
           </tbody>
@@ -34,7 +43,6 @@
 <template name="archModel">
   <tr>
     <td>{{name}}</td>
-    <td>{{view}}</td>
     <td>{{project}}</td>
     <td><a href="{{pathFor 'Edit_MO_Page' _id=_id}}"><i class="edit icon"></i></a></td>
     <td><a class="delete" href="#"><i class="delete icon"></i></a></td>

@@ -17,7 +17,11 @@ AutoForm.hooks({
      * @param result The result of form submission.
      */
     onSuccess: function onSuccess(formType, result) {
-      FlowRouter.go('List_MO_Page');
+      if (Session.get('sview')!=null){
+        FlowRouter.go('List_MO_Page', { _vname: Session.get('sview') });
+      }else{
+        FlowRouter.go('List_VI_Page');
+      }
     },
   },
 });
@@ -25,6 +29,9 @@ AutoForm.hooks({
 Template.Edit_MO_Page.helpers({
   getDoc() {
     return ArchModels.findOne(FlowRouter.getParam('_id'));
+  },
+  get_view(){
+    return Session.get('sview');
   },
   moCollection() {
     return ArchModels; 

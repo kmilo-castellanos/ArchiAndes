@@ -55,3 +55,7 @@ import './edit-mo-page.js';
 
 import './list-mo-page.html';
 import './list-mo-page.js';
+
+
+import './list-vi-page.html';
+import './list-vi-page.js';
