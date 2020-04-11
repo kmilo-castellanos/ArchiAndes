@@ -14,11 +14,11 @@ $ meteor npm install
 $ meteor npm install --save autoprefixer
 $ meteor npm install --save babel-runtime
 ```
-* Finally, run the meteor aplicacion. Within the app folder execute:
+* Finally, to start the meteor aplicacion, execute the 'meteor' command within the app folder execute:
 
 ```
 $ meteor
 ```
-Application will be running by default on port 3000
+ArchiAndes Web Application will be running by default on port 3000
 
 ![ArchiAndes Home](http://sistemasproyectos.uniandes.edu.co/iniciativas/architlab/wp-content/uploads/sites/7/2020/04/ArchiAndesHome.png)
