@@ -1,5 +1,5 @@
-# ArchInputs
-A Meteor Application to specify Architectural Inputs and Decisions, i.e. Quality Scenarios, Analyzed Quality Scenarios, and Architectural Decisions
+# ArchiAndes
+A Meteor Application to specify Architectural Inputs and Decisions. These include quality scenarios, architectural constraints, decisions, views and models.
 
 This application requires meteor
 
@@ -19,3 +19,6 @@ $ meteor npm install --save babel-runtime
 ```
 $ meteor
 ```
+Application will be running by default on port 3000
+
+![ArchiAndes Home](http://sistemasproyectos.uniandes.edu.co/iniciativas/architlab/wp-content/uploads/sites/7/2020/04/ArchiAndesHome.png)
