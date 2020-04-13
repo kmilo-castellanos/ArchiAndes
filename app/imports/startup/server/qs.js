@@ -24,9 +24,13 @@ const metricsSeeds = [
 
 const coTypesSeeds = [
   { name: 'Technology'},
-  { name: 'Vendor' },
+  { name: 'Vendor'},
   { name: 'Environment'},
-  { name: 'Cloud Model' }
+  { name: 'Cloud Model'},
+  { name: 'Architectural Style'},
+  { name: 'Processing Model'}
+
+
 ];
 
 const unitsSeeds = [

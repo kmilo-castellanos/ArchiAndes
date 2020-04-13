@@ -1,13 +1,52 @@
 <template name="Add_DE_Page">
     {{#If_Logged_In}}
+      
     <div style="padding-top: 20px" class="ui text container">
+      <div style="padding-top: 20px" class="ui text container">
+        <div class="ui segment af-fieldGroup">
+        <div>
+          <div class="ui top attached label af-fieldGroup-heading" >
+            Model
+          </div>
+        </div>
+        <div style="padding-top: 20px;">
+          <img id='{{getSrcForm}}' alt="Add Diagram" onclick='DiagramEditor.editElement(this)' src="{{defaultData}}" style="cursor:pointer;">
+        </div>
+        </div>
+      </div>
+      {{#if notQSName}} 
       {{> quickForm
         collection=deCollection
         template="semanticUI"
         id="AddDEForm"
         type="insert"
         resetOnSuccess=true}}
-    </div>
+      {{else}}
+      <div style="padding-top: 20px" class="ui text container">
+        <div class="ui segment af-fieldGroup">
+          <div class="ui top attached label af-fieldGroup-heading">Architectural Decision</div>
+          <div class="field">
+            <label><strong>Quality Scenario:</strong> {{getQSName}}</label>
+          </div>
+          <br/>
+          <form class="ui form"  id="AddDEQSForm" name="AddDEQSForm">
+            <input type="hidden" name="xml" >
+            <input type="hidden" name="data" >
+            <div class="field required">
+              <label for="decisionName" >Name</label> 
+              <input name="decisionName" id="decisionName" placeholder="Name" type="text" required />
+            </div>
+            <div class="field __web-inspector-hide-shortcut__">
+              <button type="submit" class="ui positive insertar button">
+                Submit
+              </button>
+            </div>  
+          </form>
+          </div>         
+        </div>
+        {{/if}}  
+      </div>
+     
     {{/If_Logged_In}}
   </template>
   
