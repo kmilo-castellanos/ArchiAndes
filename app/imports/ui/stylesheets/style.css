@@ -5,11 +5,8 @@ body {
 }
 */
 
-#login-buttons a, .accounts-dialog a {
-  color: #fffc9c;
-}
-.appTitle h1{
-  color: #fffc9c;
+#login-buttons .login-link-text {
+  color: rgba(255, 255, 255, 0.9);
 }
 /*
 .ui.positive.buttons .button,
