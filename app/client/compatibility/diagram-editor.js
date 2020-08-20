@@ -56,8 +56,8 @@ DiagramEditor.prototype.config = null;
 /**
  * Protocol and domain to use.
  */
-DiagramEditor.prototype.drawDomain = 'https://www.draw.io/';
-
+//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/';
+DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccFVLib.xml&libs=0';
 /**
  * UI theme to be use.
  */
