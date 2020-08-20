@@ -1,8 +1,8 @@
-title: meteor-application-template
-description: A template for quickly starting Meteor application development
+title: ArchiAndes
+description: A Meteor Application to specify Architectural Inputs and Decisions. These include quality scenarios, architectural constraints, decisions, views and models.
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-cayman
+theme: jekyll-theme-slate
 
 gems:
   - jekyll-mentions
