@@ -56,9 +56,9 @@ DiagramEditor.prototype.config = null;
 /**
  * Protocol and domain to use.
  */
-//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/';
-//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccFVLib.xml&libs=0';
-DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantFV.xml;Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml&libs=0';
+DiagramEditor.prototype.drawDomain = 'https://www.draw.io/';
+//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml&libs=0';
+//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantFV.xml;Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml&libs=0';
 /**
  * UI theme to be use.
  */
@@ -72,7 +72,7 @@ DiagramEditor.prototype.format = 'xml';
 /**
  * Specifies if libraries should be enabled.
  */
-DiagramEditor.prototype.libraries = true;
+DiagramEditor.prototype.libraries = false;
 
 //libraries: Sidebar.prototype.defaultEntries,
 //			customLibraries: Editor.defaultCustomLibraries,
@@ -92,8 +92,10 @@ DiagramEditor.prototype.editElement = function(elem)
 	this.startElement = elem;
 	this.elem_bkp=Object.assign({}, elem);
 	var src = this.getElementData(elem);
+	 
 	//reading the origin form name from img.id that called this functions
 	this.formType=elem.id;
+	console.log(this.formType);
 	var fmt = this.format;
 
 	if (src.substring(0, 15) === 'data:image/png;')
@@ -266,9 +268,15 @@ DiagramEditor.prototype.getFrameStyle = function()
  */
 DiagramEditor.prototype.getFrameUrl = function()
 {
-	var url = this.drawDomain + '?embed=1&proto=json&spin=1';
-
-	if (this.ui != null)
+	var sview = this.formType.split(':')[1];
+	console.log(sview);
+	var accLibs = 'Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantFV.xml';
+	if (sview=='Deployment'){
+		accLibs='Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml';
+	}
+	var libs = '&libs=0&clibs='+accLibs;
+	var url = this.drawDomain + '?embed=1&proto=json&spin=1'+libs;
+	/*if (this.ui != null)
 	{
 		url += '&ui=' + this.ui;
 	}
@@ -281,7 +289,8 @@ DiagramEditor.prototype.getFrameUrl = function()
 	if (this.config != null)
 	{
 		url += '&configure=1';
-	}
+	}*/
+	console.log(url);
 
 	return url;
 };
@@ -405,7 +414,8 @@ DiagramEditor.prototype.save = function(msg, draft, elt)
 			//defining the origin form name to assign the data and xml
 
 			var formName="#AddMOForm";
-			if (this.formType!='addDiagram'){
+			console.log(this.formType);
+			if (!this.formType.startsWith('addDiagram')){
 				formName="#EditMOForm";
 			}
 			

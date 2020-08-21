@@ -23,9 +23,9 @@
         </div>
         <div style="padding-top: 20px;">
           {{#if emptyData}}
-          <img id='editDiagram' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{defaultData}}" style="cursor:pointer;">
+          <img id='editDiagram:{{get_view}}' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{defaultData}}" style="cursor:pointer;">
           {{else}}
-          <img id='editDiagram' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{getDoc.data}}" style="cursor:pointer;">
+          <img id='editDiagram:{{get_view}}' alt="Edit Diagram" onclick="$('html,body').scrollTop(0);DiagramEditor.editElement(this)" src="{{getDoc.data}}" style="cursor:pointer;">
           {{/if}}
         </div>
         </div>

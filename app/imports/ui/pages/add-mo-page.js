@@ -17,6 +17,7 @@ AutoForm.hooks({
      * @param result The result of form submission.
      */
     onSuccess: function onSuccess(formType, result) {
+      console.log('AddMOForm.onSuccess');
       if (Session.get('sview')!=null){
         FlowRouter.go('List_MO_Page', { _vname: Session.get('sview') });
       }else{
@@ -28,6 +29,7 @@ AutoForm.hooks({
 
 Template.Add_MO_Page.helpers({
   get_view(){
+    console.log(Session.get('sview'));
     return Session.get('sview');
   },
   moCollection() {
@@ -35,6 +37,7 @@ Template.Add_MO_Page.helpers({
   },
   defaultDoc(){
     return {
+      //assign the default Value View to the document's attribute: view.
       view: Session.get('sview')
     }
   },
