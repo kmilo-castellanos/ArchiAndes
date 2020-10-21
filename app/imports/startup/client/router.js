@@ -126,6 +126,16 @@ FlowRouter.route('/edit-de/:_id', {
 });
 
 
+
+FlowRouter.route('/inspector-de/:_dname', {
+  name: 'Inspector_DE_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Inspector_DE_Page' });
+  },
+});
+
+
+
 FlowRouter.route('/edit-mo/:_id', {
   name: 'Edit_MO_Page',
   action() {

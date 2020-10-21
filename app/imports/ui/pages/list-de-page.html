@@ -9,6 +9,7 @@
             <th>QS</th>
             <th>Model</th>
             <th>Edit</th>
+            <th>Inspect</th>
             <th>Delete</th>
           </tr>
           </thead>
@@ -19,7 +20,7 @@
             {{/each}}
           {{else}}
             <tr>
-              <td colspan="5">There are no Architecture Decisions</td>
+              <td colspan="6">There are no Architecture Decisions</td>
             </tr>
           {{/if}}
           </tbody>
@@ -36,7 +37,8 @@
     <td>{{name}}</td>
     <td>{{qs_name}}</td>
     <td>{{model_name}}</td>
-    <td><a href="{{pathFor 'Edit_DE_Page' _id=_id}}"><i class="edit icon"></i></a></td>
+    <td><a href="{{pathFor 'Edit_DE_Page' _id=_id }}"><i class="edit icon"></i></a></td>
+    <td><a href="{{pathFor 'Inspector_DE_Page' _dname=name }}"><i class="search icon"></i></a></td>
     <td><a href="#" class="delete"><i class="delete icon"></i></a></td>
   </tr>
 </template>

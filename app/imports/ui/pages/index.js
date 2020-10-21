@@ -59,3 +59,10 @@ import './list-mo-page.js';
 
 import './list-vi-page.html';
 import './list-vi-page.js';
+
+
+
+
+import './inspector-de-page.html';
+import './inspector-de-page.js';
+

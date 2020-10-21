@@ -1,0 +1,42 @@
+<template name="Inspector_DE_Page">
+  {{#If_Logged_In}}
+    <div id='test_insp' class="ui text container">
+      {{#if Template.subscriptionsReady}}
+        <table style="margin-top: 20px" class="ui celled table">
+          <thead>
+          <tr>
+            <th>Decision</th>
+            <th>View</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#if not_empty_deAppList}}  
+            {{#each deAppList}}
+              {{> decisionApp}}
+            {{/each}}
+          {{else}}
+            <tr>
+              <td colspan="4">There are not elements associated to this decision</td>
+            </tr>
+          {{/if}}
+          </tbody>
+        </table>
+      {{else}}
+        {{> Loading}}
+      {{/if}}
+    </div>
+  {{/If_Logged_In}}
+</template>
+
+<template name="decisionApp">
+  <tr>
+    <td>{{dname}}</td>
+    <td>{{view_name}}</td>
+    <td><a href="{{pathFor 'Edit_MO_Page' _id=idModel}}">{{model}}</a></td>
+    <td>{{element_type}}</td>
+    <td>{{element_name}}</td>
+  </tr>
+</template>

@@ -56,7 +56,9 @@ DiagramEditor.prototype.config = null;
 /**
  * Protocol and domain to use.
  */
-DiagramEditor.prototype.drawDomain = 'https://www.draw.io/';
+//DiagramEditor.prototype.drawDomain = 'https://www.draw.io/'; This is not working yet
+ 
+DiagramEditor.prototype.drawDomain = 'https://embed.diagrams.net/';
 //DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml&libs=0';
 //DiagramEditor.prototype.drawDomain = 'https://www.draw.io/?embed=1&clibs=Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantFV.xml;Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fkmilo-castellanos%2FArchiAndes%2Fmaster%2FdrawioLibs%2FAccordantDV.xml&libs=0';
 /**
@@ -276,6 +278,7 @@ DiagramEditor.prototype.getFrameUrl = function()
 	}
 	var libs = '&libs=0&clibs='+accLibs;
 	var url = this.drawDomain + '?embed=1&proto=json&spin=1'+libs;
+	console.log("url:"+url);
 	/*if (this.ui != null)
 	{
 		url += '&ui=' + this.ui;
