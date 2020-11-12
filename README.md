@@ -1,9 +1,9 @@
 # ArchiAndes
-A Meteor Application to specify Architectural Inputs and Decisions. These include quality scenarios, architectural constraints, decisions, views and models.
 
-This application requires meteor
+A Meteor Application to specify Architectural Inputs and Decisions. These specifications include quality scenarios, architectural constraints, decisions, views and models.
 
-To run this application:
+
+This application requires ``meteor''. So, to run this application:
 
 * First, [install Meteor](https://www.meteor.com/install).
 
