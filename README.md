@@ -21,4 +21,4 @@ $ meteor
 ```
 ArchiAndes Web Application will be running by default on port 3000
 
-![ArchiAndes Home](http://sistemasproyectos.uniandes.edu.co/iniciativas/architlab/wp-content/uploads/sites/7/2020/04/ArchiAndesHome.png)
+![ArchiAndes Home](https://github.com/kmilo-castellanos/ArchiAndes/blob/master/archiandes-home.png?raw=true)
