@@ -66,3 +66,6 @@ import './list-vi-page.js';
 import './inspector-de-page.html';
 import './inspector-de-page.js';
 
+import './moni-qs-page.html';
+import './moni-qs-page.js';
+

@@ -38,6 +38,15 @@ FlowRouter.route('/list-qs', {
   },
 });
 
+
+
+FlowRouter.route('/moni-qs', {
+  name: 'Monitor_QS_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Monitor_QS_Page' });
+  },
+});
+
 FlowRouter.route('/add-qs', {
   name: 'Add_QS_Page',
   action() {

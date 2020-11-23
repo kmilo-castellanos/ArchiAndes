@@ -1,0 +1,43 @@
+<template name="Monitor_QS_Page">
+  {{#If_Logged_In}}
+    <div class="ui text container">
+      {{#if Template.subscriptionsReady}}
+        <table style="margin-top: 20px" class="ui celled table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Project</th>
+            <th>Quality Attribute</th>
+            <th>Metric</th>
+            <th>Monitor</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#if not_empty_qsList}}  
+            {{#each qsList}}
+              {{> moniqscenario}}
+            {{/each}}
+          {{else}}
+            <tr>
+              <td colspan="5">There are no Quality Scenarios</td>
+            </tr>
+          {{/if}}
+          </tbody>
+        </table>
+      {{else}}
+        {{> Loading}}
+      {{/if}}
+    </div>
+  {{/If_Logged_In}}
+</template>
+
+
+<template name="moniqscenario">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{project}}</td>
+    <td>{{qa}}</td>
+    <td>{{qametric}}</td>
+    <td><a target="_blank" href="http://172.31.76.235:3000/d/1GXV5joMk/{{name}}?orgId=1"><i class="heartbeat icon"></i></a></td>
+  </tr>
+</template>
